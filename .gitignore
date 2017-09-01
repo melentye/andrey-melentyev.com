@@ -1,0 +1,9 @@
+# Filter out Python side-effects
+__pycache__/
+*.py[cod]
+
+# Environment-specific
+.python-version
+
+# Output directory
+out/
