@@ -3,13 +3,15 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Andrey Melentyev'
-SITENAME = 'Engineering AI'
+SITENAME = 'Machine Learning Engineering'
 SITEURL = ''
 
-PATH = 'src'
 TIMEZONE = 'Europe/Stockholm'
 DEFAULT_LANG = 'en'
 DEFAULT_CATEGORY = 'misc'
+
+PATH = 'src'
+IGNORE_FILES = []
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -30,3 +32,18 @@ DEFAULT_PAGINATION = False
 RELATIVE_URLS = True
 
 FILENAME_METADATA = '(?P<date>\d{4}-\d{2}-\d{2})_(?P<title>.*)'
+
+# Appearance
+THEME = 'simple'
+
+# Plugins
+PLUGIN_PATHS = ['plugins']
+PLUGINS = ['ipynb.markup']
+
+MARKUP = ('md', 'ipynb')
+
+# IPython plugin settings
+IPYNB_USE_META_SUMMARY = False
+IPYNB_IGNORE_CSS = True
+
+IGNORE_FILES += ['.ipynb_checkpoints']
