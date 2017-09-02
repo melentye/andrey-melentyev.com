@@ -41,10 +41,10 @@ s3_upload : publish
 	$(AWS_CLI) s3 sync $(outputdir)/ s3://$(s3_bucket) --acl public-read --delete
 
 cf_create :
-	$(AWS_CLI) cloudformation create-stack --stack-name $(cf_stack) --template-body file://cloudformation/template.yaml --parameters ParameterKey=HostedZone,ParameterValue=$(dns_name)
+	$(AWS_CLI) cloudformation create-stack --stack-name $(cf_stack) --template-body file://cloudformation/template.yaml --parameters ParameterKey=RootDomainName,ParameterValue=$(dns_name)
 
 cf_update :
-	$(AWS_CLI) cloudformation update-stack --stack-name $(cf_stack) --template-body file://cloudformation/template.yaml --parameters ParameterKey=HostedZone,ParameterValue=$(dns_name)
+	$(AWS_CLI) cloudformation update-stack --stack-name $(cf_stack) --template-body file://cloudformation/template.yaml --parameters ParameterKey=RootDomainName,ParameterValue=$(dns_name)
 
 cf_status :
 	$(AWS_CLI) cloudformation describe-stack-events --stack-name $(cf_stack) --output table --query 'StackEvents[*].[LogicalResourceId,ResourceStatus,Timestamp]' --max-items 5
