@@ -1,5 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
+  # Note that this name is used in the Makefile
   RootDomainName:
     Type: String
     Description: The DNS name of an existing Amazon Route 53 hosted zone
@@ -78,6 +79,10 @@ Outputs:
   BucketWebsiteURL:
     Value: !GetAtt [S3BucketForWebsiteContent, WebsiteURL]
     Description: The URL of the S3 bucket website
+  # Note that this name is used in the Makefile  
+  CloudFrontDistributionId:
+    Value: !Ref WebsiteCDN  
+    Description: The CloudFront Distribution Id to be used for creating invalidations during deployment
   WebsiteURL:
     Value: !Join ['', ['https://', 'www.', !Ref RootDomainName]]
     Description: The URL of the newly created website
