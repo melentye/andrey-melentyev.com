@@ -21,7 +21,7 @@ ifeq ($(DEBUG), 1)
 	pelicanopts += -D
 endif
 
-.PHONY : all, site, html, serve, publish, s3_upload, cf_create, cf_update, cf_status, clean
+.PHONY : all site html serve publish s3_upload cf_create cf_update cf_status clean
 
 all : site
 
@@ -38,7 +38,7 @@ serve :
 
 publish :
 	$(PELICAN) $(srcdir) -o $(outputdir) -s publishconf.py $(pelicanopts) ;\
-	$(AWS_CLI) s3 sync $(outputdir)/ s3://$(s3_bucket) --delete ;\
+	$(AWS_CLI) s3 sync $(outputdir)/ s3://$(s3_bucket) --acl public-read --delete ;\
 	CF_DIST_ID=$$($(AWS_CLI) cloudformation describe-stacks --stack-name $(cf_stack) --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionId'].OutputValue" --output text) ;\
 	$(AWS_CLI) cloudfront create-invalidation --distribution-id $$CF_DIST_ID --paths "/*"
 

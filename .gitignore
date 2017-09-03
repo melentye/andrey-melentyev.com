@@ -7,3 +7,6 @@ __pycache__/
 
 # Output directory
 out/
+
+# Jupyter
+.ipynb_checkpoints/
