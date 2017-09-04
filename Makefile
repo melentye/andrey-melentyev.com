@@ -21,7 +21,7 @@ ifeq ($(DEBUG), 1)
 	pelicanopts += -D
 endif
 
-.PHONY : all site html serve publish s3_upload cf_create cf_update cf_status clean
+.PHONY : all site html serve devserver stopserver publish cf_create cf_update cf_status clean
 
 all : site
 
@@ -35,6 +35,13 @@ html : $(pages) $(outputdir)
 
 serve :
 	cd $(outputdir) && $(PYTHON) -m pelican.server
+
+devserver :
+	$(projectdir)/develop_server.sh restart
+
+stopserver :
+	$(projectdir)/develop_server.sh stop
+	@echo 'Stopped Pelican and SimpleHTTPServer processes running in background.'
 
 publish :
 	$(PELICAN) $(srcdir) -o $(outputdir) -s publishconf.py $(pelicanopts) ;\
