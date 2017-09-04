@@ -20,8 +20,8 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),)
+# Additional menu items
+MENUITEMS = (('Home', '/'),)
 
 # Social widget
 SOCIAL = (('Twitter', 'https://twitter.com/melentye'),)
@@ -34,7 +34,7 @@ RELATIVE_URLS = True
 FILENAME_METADATA = '(?P<date>\d{4}-\d{2}-\d{2})_(?P<title>.*)'
 
 # Appearance
-THEME = 'simple'
+THEME = 'themes/myduckingtheme'
 
 # Plugins
 PLUGIN_PATHS = ['plugins']
