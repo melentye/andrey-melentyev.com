@@ -10,3 +10,7 @@ out/
 
 # Jupyter
 .ipynb_checkpoints/
+
+# IntelliJ
+.idea/
+*.iml
