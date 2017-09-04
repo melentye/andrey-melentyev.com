@@ -36,7 +36,8 @@
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="{{ SITEURL }}/">{{ SITENAME }} <strong>{{ SITESUBTITLE }}</strong></a></h1>
+                <h1>{{ SITENAME }}</h1>
+                <aside>{{ SITESUBTITLE }}</aside>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
         {% for title, link in MENUITEMS %}
@@ -56,11 +57,15 @@
         </ul></nav><!-- /#menu -->
         {% block content %}
         {% endblock %}
+        <hr>
         <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+            {% if GITHUB_URL %}
+            <small>Found an issue? Submit <a href="{{ GITHUB_URL }}">feedback or a pull request on GitHub.</a></small>
+            {% endif %}
+            <address id="about" class="vcard body">
+                <small>&copy; 2017. Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.</small>
+            </address><!-- /#about -->
         </footer><!-- /#contentinfo -->
 </body>
 </html>
