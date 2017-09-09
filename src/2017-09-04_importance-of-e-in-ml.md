@@ -25,7 +25,8 @@ have a shorter feedback loop between having a new idea and .
 
 For example, a mature data-intensive company will likely create and support infrastructure for **data collection**, some
 kind of data lake to store what's been collected. Depending on the needs and constraints, the collection of data can be
-batch or (near)realtime, but first and foremost it should be automated.
+batch or (near)realtime, but first and foremost it should be automated. It allows data scientist to easily find what 
+data is available and how to access it.
 
 Collecting the data is not enough, imagine there are terabytes of relevant data but not enough **infrastructure for
 analysis and modelling**. Yet again, an engineering effort needs to be taken to create or provision the necessary tools.
