@@ -26,9 +26,6 @@ AUTHOR_FEED_RSS = None
 # Additional menu items
 MENUITEMS = (('Home', '/'),)
 
-# Social widget
-SOCIAL = (('Twitter', 'https://twitter.com/melentye'),)
-
 DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
