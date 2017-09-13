@@ -21,7 +21,7 @@ At each step, applying engineering practices such as [version control for source
  and [delivery](https://www.martinfowler.com/bliki/ContinuousDelivery.html), [infrastructure as code](https://www.martinfowler.com/bliki/InfrastructureAsCode.html), 
  [agile principles](http://agilemanifesto.org/) can help improve the quality and reduce lead time. A simplified way of 
 thinking about it is to automate as much routine as possible in order to allow data scientists to focus on modelling and
-have a shorter feedback loop between having a new idea and .
+have a shorter feedback loop between having a new idea and seeing it work live.
 
 For example, a mature data-intensive company will likely create and support infrastructure for **data collection**, some
 kind of data lake to store what's been collected. Depending on the needs and constraints, the collection of data can be
@@ -33,7 +33,9 @@ analysis and modelling**. Yet again, an engineering effort needs to be taken to 
 Luckily these days there are plenty of open source products covering all the basic needs. Compute is cheap and quick to
 scale with cloud providers like AWS or Azure: an instance with Tesla K80 GPU costs as little as [$0.21 per hour](https://aws.amazon.com/ec2/spot/pricing/).
 Depending on the size of the data sets and ML algorithms, modelling can happen anywhere from laptops to clusters of 
-GPU-enabled instances in the cloud.
+GPU-powered instances in the cloud. Feature engineering, model training and validation are some of the activities that
+we associate with the data scientist role but it doesn't mean no engineering work is required to make them efficient
+and painless.
 
 **Production deployment** of models and **feature extraction pipelines** are perhaps some of the steps where the role of
 engineering has always been appreciated and the role of the data scientist ceases. However there's yet another possible
