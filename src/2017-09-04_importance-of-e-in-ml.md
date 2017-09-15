@@ -5,7 +5,7 @@ Summary: Machine learning is a software-heavy area where software development kn
 With the recent advances in areas of machine and deep learning, availability of large data sets and inexpensive compute 
 power, engineering aspects of ML-heavy products such as maintainability, testability, scalability are becoming
 increasingly important. In real life products, even the most advanced and well-tuned model is worth very little until it
-is deployed. Being able to test and deploy new features and models quickly is a much desired capability.
+is deployed. Being able to test and deploy new features and models quickly is a much-desired capability.
 
 A typical ML project will have a number of stages similar to the ones below with some feedback
 loops between them:
@@ -25,7 +25,7 @@ have a shorter feedback loop between having a new idea and seeing it work live.
 
 For example, a mature data-intensive company will likely create and support infrastructure for **data collection**, some
 kind of data lake to store what's been collected. Depending on the needs and constraints, the collection of data can be
-batch or (near)realtime, but first and foremost it should be automated. It allows data scientist to easily find what 
+batch or (near)real-time, but first and foremost it should be automated. It allows data scientist to easily find what 
 data is available and how to access it.
 
 Collecting the data is not enough, imagine there are terabytes of relevant data but not enough **infrastructure for
@@ -47,12 +47,12 @@ testing, it is known to work well.
 
 Now that we have the newly produced model making decisions live, we are still not done. **Monitoring, logging and audit** are
 some of the capabilities that can be developed: values of input variables or features for the model, as well as model 
-decisions can be logged and made available in form of dashboards. Depending on business needs, alerts can be set up to 
+decisions, can be logged and made available in form of dashboards. Depending on business needs, alerts can be set up to 
 notify on-call staff of deviations from the expected value distributions. Model results can be fed back to the data lake 
-for further analysis. [What's your ML test score?](https://research.google.com/pubs/pub45742.html) paper by Google Research
+for further analysis. [What's your ML test score?](https://research.google.com/pubs/pub45742.html) - a paper by Google Research
 covers questions of testing monitoring ML production systems.
 
-One other place where software engineering practices are useful is development of the **machine learning frameworks**,
+One other place where software engineering practices are useful is the development of the **machine learning frameworks**,
 [Scikit-learn](http://scikit-learn.org/), [TensorFlow](https://www.tensorflow.org/), [Theano](http://deeplearning.net/software/theano/),
 [Keras](keras.io), [Gensim](https://radimrehurek.com/gensim/) just to name a few, all use version control systems,
 reproducible builds, and continuous integration pipelines with automated testing.
@@ -60,7 +60,7 @@ reproducible builds, and continuous integration pipelines with automated testing
 Another interesting topic is team organization, how does one structure the teams so that data scientists get the best of
 engineering? What is the best way to **collaborate**? What is the role of ML engineer?
 
-In this blog I will do my best to collect best practices and summarize my personal experience in the area of production
+In this blog, I will do my best to collect best practices and summarize my personal experience in the area of production
 ML systems.
 
 _Geronimo!_

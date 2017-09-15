@@ -47,3 +47,17 @@ IPYNB_USE_META_SUMMARY = False
 IPYNB_IGNORE_CSS = True
 
 IGNORE_FILES += ['.ipynb_checkpoints']
+
+# Make the processor ignore files in static/ dir
+ARTICLE_EXCLUDES = ['static']
+
+# Take advantage of the following defaults
+# STATIC_SAVE_AS = '{path}'
+# STATIC_URL = '{path}'
+STATIC_PATHS = [
+    'static',
+]
+# Control over the target location of the pages
+EXTRA_PATH_METADATA = {
+    'static/yandex_8ea30878bfa350b1.html': {'path': 'yandex_8ea30878bfa350b1.html'},
+}

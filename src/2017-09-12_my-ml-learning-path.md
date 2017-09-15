@@ -2,7 +2,7 @@ Title: My ML learning path
 Tags: machine learning, education
 Summary: A story on how I learned myself some machine learning and an advice to fellow engineers
 
-My colleague [Mariana Bocoi](https://twitter.com/MarianaBocoi) was so kind as to invite me to the dry-run of her 
+My colleague, [Mariana Bocoi](https://twitter.com/MarianaBocoi) was so kind as to invite me to the dry-run of her 
 presentation on _Machine Learning for the masses_ where she speaks about her experience getting to know machine learning,
 goes into the basics of what ML is and how can one get started. Not only the presentation is well made and has gotten 
 a feedback of being "the least hostile presentation on machine learning" but it also pushed me to finally share my own path.
@@ -16,10 +16,10 @@ strengthened the material.
 
 The next big thing for me was the _Neural Networks for Machine Learning_ by [Geoffrey Hinton](http://www.cs.toronto.edu/~hinton/)
 which is also [available on Coursera](https://www.coursera.org/learn/neural-networks/). Tons of material squeezed into the 
-15 weeks of videos and assignments. A lot of fun, quite time consuming, and sometimes a little challenging. 
+15 weeks of videos and assignments. A lot of fun, quite time-consuming, and sometimes a little challenging. 
 
-In case your calculus or probability theory are rusty, it could be worth refreshing them before taking taking Hinton's course,
-for example [MITx 6.041x](https://www.edx.org/course/introduction-probability-science-mitx-6-041x-2) works really well 
+In case your calculus or probability theory are rusty, it could be worth refreshing them before taking Hinton's course,
+for example, [MITx 6.041x](https://www.edx.org/course/introduction-probability-science-mitx-6-041x-2) works really well 
 and has incredible structure, content and just the right balance between dry theory and intuition.
 
 It is absolutely brilliant that machine learning courses from the top universities and researchers like the ones mentioned 
@@ -32,7 +32,7 @@ published; until that check out the great collection of notebooks with code exam
 and [second](https://github.com/rasbt/python-machine-learning-book-2nd-edition) editions.
 
 To familiarize myself with NLP I used one of the Kaggle competitions where the main task was to extract signal from a text.
-I tried both more classical approaches like TF-IDF followed by a random forest classifier as well as convolutional neural net
+I tried both more classical approaches like TF-IDF followed by a random forest classifier as well as a convolutional neural net
 on top of a word2vec representation of the texts. Using [t-SNE](https://distill.pub/2016/misread-tsne/) for word2vec 
 visualization turned out to be a lot of fun, thanks to my colleague Damien Lejeune for guiding me. I used [this](https://www.kaggle.com/c/msk-redefining-cancer-treatment)
 competition's dataset but I'm sure any good text corpus will do.
@@ -52,9 +52,9 @@ There is also a number of resources I have on my to-do list but haven't yet had 
 become interested in computer vision.
 
 To summarize, I don't think my learning path was the most optimal one. What would I do differently if I were to start over?
-Well, for one thing I'd mix in more practice and real-life projects in between the online courses and books. And make sure
+Well, for one thing, I'd mix in more practice and real-life projects in between the online courses and books. And make sure
 to apply all the [best practices for learning](https://www.coursera.org/learn/learning-how-to-learn?utm_source=blog). 
 I also recommend checking [The Open Source Data Science Masters](http://datasciencemasters.org/) 
 and [Will Wolf's somewhat unorthodox approach](http://willwolf.io/2016/07/29/my-open-source-machine-learning-masters-in-casablanca-morocco/)
-for finding time to learn. Have an advice for fellow machine learning learners? Drop me an email and I will make sure to 
+to finding time to learn. Have an advice for fellow machine learning learners? Drop me an email and I will make sure to 
 incorporate it.
