@@ -6,3 +6,12 @@ nav ul {
 nav li {
  display: inline-block;
 }
+
+ol#post-list {
+ margin-left: 0;
+ padding-left: 0;
+}
+
+time.published {
+ font-size: smaller;
+}
