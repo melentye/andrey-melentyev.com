@@ -59,5 +59,5 @@ STATIC_PATHS = [
 ]
 # Control over the target location of the pages
 EXTRA_PATH_METADATA = {
-    'static/yandex_8ea30878bfa350b1.html': {'path': 'yandex_8ea30878bfa350b1.html'},
+    'static/yandex_44baf762e45a6938.html': {'path': 'yandex_44baf762e45a6938.html'},
 }
