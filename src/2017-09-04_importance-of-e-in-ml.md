@@ -1,8 +1,8 @@
 Title: On the importance of software engineering in machine learning
 Tags: machine learning, software engineering
-Summary: Machine learning is a software-heavy area where software development know-how is useful in a number of cases. Let's take a look at how applying engineering practices can help build ML products faster, make them more reliable and keep data scientists happy.  
+Summary: Machine learning is a software-heavy area where software development know-how is useful in a number of cases. Let's take a look at how applying engineering practices can help build ML products faster, make them more reliable and keep data scientists happy.
 
-With the recent advances in areas of machine and deep learning, availability of large data sets and inexpensive compute 
+With the recent advances in areas of machine and deep learning, availability of large data sets and inexpensive compute
 power, engineering aspects of ML-heavy products such as maintainability, testability, scalability are becoming
 increasingly important. In real life products, even the most advanced and well-tuned model is worth very little until it
 is deployed. Being able to test and deploy new features and models quickly is a much-desired capability.
@@ -16,10 +16,13 @@ loops between them:
 * Deployment of the resulting models into production and scaling them to support the load.
 * Monitoring the ML systems in production, including the features and predictions.
 
-At each step, applying engineering practices such as [version control for source code](https://martinfowler.com/bliki/VersionControlTools.html),
-[unit testing](https://www.martinfowler.com/bliki/UnitTest.html), [continuous integration](https://martinfowler.com/articles/continuousIntegration.html)
- and [delivery](https://www.martinfowler.com/bliki/ContinuousDelivery.html), [infrastructure as code](https://www.martinfowler.com/bliki/InfrastructureAsCode.html), 
- [agile principles](http://agilemanifesto.org/) can help improve the quality and reduce lead time. A simplified way of 
+At each step, applying engineering practices such as
+[version control for source code](https://martinfowler.com/bliki/VersionControlTools.html),
+[unit testing](https://www.martinfowler.com/bliki/UnitTest.html),
+[continuous integration](https://martinfowler.com/articles/continuousIntegration.html)
+and [delivery](https://www.martinfowler.com/bliki/ContinuousDelivery.html),
+[infrastructure as code](https://www.martinfowler.com/bliki/InfrastructureAsCode.html),
+[agile principles](http://agilemanifesto.org/) can help improve the quality and reduce lead time. A simplified way of
 thinking about it is to automate as much routine as possible in order to allow data scientists to focus on modelling and
 have a shorter feedback loop between having a new idea and seeing it work live.
 
@@ -45,11 +48,12 @@ framework allowing data scientists to deploy models directly to production. Feat
 that is suitable for both analysis and production use cases. It may sound scary, but with a certain amount of automated
 testing, it is known to work well.
 
-Now that we have the newly produced model making decisions live, we are still not done. **Monitoring, logging and audit** are
-some of the capabilities that can be developed: values of input variables or features for the model, as well as model 
-decisions, can be logged and made available in form of dashboards. Depending on business needs, alerts can be set up to 
-notify on-call staff of deviations from the expected value distributions. Model results can be fed back to the data lake 
-for further analysis. [What's your ML test score?](https://research.google.com/pubs/pub45742.html) - a paper by Google Research
+Now that we have the newly produced model making decisions live, we are still not done.
+**Monitoring, logging and audit** are some of the capabilities that can be developed: values of input variables
+or features for the model, as well as model decisions, can be logged and made available in form of dashboards.
+Depending on business needs, alerts can be set up to notify on-call staff of deviations from the expected value
+distributions. Model results can be fed back to the data lake for further analysis.
+[What's your ML test score?](https://research.google.com/pubs/pub45742.html) - a paper by Google Research
 covers questions of testing monitoring ML production systems.
 
 One other place where software engineering practices are useful is the development of the **machine learning frameworks**,
@@ -64,4 +68,3 @@ In this blog, I will do my best to collect best practices and summarize my perso
 ML systems.
 
 _Geronimo!_
-    
