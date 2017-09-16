@@ -1,8 +1,6 @@
 Title: On the importance of software engineering in machine learning
 Tags: machine learning, software engineering
-Summary: Machine learning is a software-heavy area where software development know-how is useful in a number of cases.
-Let's take a look at how applying engineering practices can help build ML products faster, make them more reliable and
-keep data scientists happy.
+Summary: Machine learning is a software-heavy area where software development know-how is useful in a number of cases. Let's take a look at how applying engineering practices can help build ML products faster, make them more reliable and keep data scientists happy.
 
 With the recent advances in areas of machine and deep learning, availability of large data sets and inexpensive compute
 power, engineering aspects of ML-heavy products such as maintainability, testability, scalability are becoming
