@@ -1,4 +1,5 @@
 Title: My ML learning path
+Modified: 2017-09-16 11:21
 Tags: machine learning, education
 Summary: A story on how I learned myself some machine learning and an advice to fellow engineers
 
