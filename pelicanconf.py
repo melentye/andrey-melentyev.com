@@ -38,7 +38,10 @@ THEME = 'themes/myduckingtheme'
 
 # Plugins
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['ipynb.markup']
+PLUGINS = [
+    'ipynb.markup',
+    'sitemap'
+]
 
 MARKUP = ('md', 'ipynb')
 
@@ -60,4 +63,21 @@ STATIC_PATHS = [
 # Control over the target location of the pages
 EXTRA_PATH_METADATA = {
     'static/yandex_44baf762e45a6938.html': {'path': 'yandex_44baf762e45a6938.html'},
+    'static/robots.txt': {'path': 'robots.txt'},
+}
+
+# Sitemap configuration
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.55,
+        'indexes': 0.5,
+        'pages': 0.45
+    },
+    'changefreqs': {
+        'articles': 'weekly',
+        'indexes': 'daily',
+        'pages': 'weekly'
+    },
+    'exclude': ['tag/', 'category/']
 }
