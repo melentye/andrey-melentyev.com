@@ -45,6 +45,13 @@ PLUGINS = [
 
 MARKUP = ('md', 'ipynb')
 
+# Python Markdown extensions configuration, see http://pythonhosted.org/Markdown/extensions/
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.toc': {}
+    }
+}
+
 # IPython plugin settings
 IPYNB_USE_META_SUMMARY = False
 IPYNB_IGNORE_CSS = True
