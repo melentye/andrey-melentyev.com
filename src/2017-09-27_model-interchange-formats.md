@@ -45,9 +45,17 @@ for Python, R, Java and Scala. Model saving and loading is offered via a pair of
 Because the model persistence logic is delegated to the library core, an XGB model trained in R or Python can then be exported
 and loaded into a prediction module written in a different, possibly more performant langugage such as C++.
 
+XGBoost models can be converted to PMML using [jpmml-xgboost](https://github.com/jpmml/jpmml-xgboost) by Openscoring.io.
+
 ### LightGBM
 
-there's an example for [LightGBM](https://github.com/Microsoft/LightGBM/blob/master/R-package/demo/basic_walkthrough.R).
+[LightGBM](https://github.com/Microsoft/LightGBM) is another popular gradient boosting library, created by Microsoft. Just
+like XGBoost it's core is written in C++ with APIs in R and Python. Code examples
+[in R](https://github.com/Microsoft/LightGBM/blob/master/R-package/demo/basic_walkthrough.R) and
+[Python](https://github.com/Microsoft/LightGBM/blob/master/tests/python_package_test/test_basic.py) show how to save and
+load models into LightGBM internal format.
+
+LightGBM models can be converted to PMML using [jpmml-lightgbm](https://github.com/jpmml/jpmml-lightgbm) by Openscoring.io.
 
 ### CatBoost
 
@@ -113,6 +121,8 @@ scikit-learn for SVM and some more models from scikit-learn. There's a documenta
 [how to convert a model into CoreML format](https://developer.apple.com/documentation/coreml/converting_trained_models_to_core_ml)
 as well as [coremltools](https://pypi.python.org/pypi/coremltools) Python package with reference implementations of the converters.
 
+Interesting to see that Apple decided not to support PMML as one of the import formats.
+
 ### Clipper
 
 [Clipper](http://clipper.ai/) is another product for *running* trained models. It allows deploying models as microservices
@@ -120,6 +130,12 @@ that can be invoked by other services within the IT landscape of the company, fo
 a feature service to fetch the variables and then call Clipper to make the predictions. Trained Python models
 [can be deployed directly](http://clipper.ai/documentation/python_model_deployment/) into Clipper, a prediction serving
 service by UC Berkeley [RISE Lab](https://rise.cs.berkeley.edu/).
+
+### Baidu Mobile Deep Learning
+
+Baidu's [MDL](https://github.com/baidu/mobile-deep-learning) is another new kid on the block, similarly to Apple CoreML,
+it's a library for deploying deep learning models to mobile devices with support for iOS and Android. Models trained in
+[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) and TODO
 
 ## Model persistence using programming language standard libraries
 
