@@ -48,6 +48,7 @@ MARKUP = ('md', 'ipynb')
 # Python Markdown extensions configuration, see http://pythonhosted.org/Markdown/extensions/
 MARKDOWN = {
     'extension_configs': {
+        'markdown.extensions.codehilite': {},
         'markdown.extensions.toc': {}
     }
 }

@@ -59,15 +59,29 @@ LightGBM models can be converted to PMML using [jpmml-lightgbm](https://github.c
 
 ### CatBoost
 
-The combination of [save_model](https://tech.yandex.com/catboost/doc/dg/concepts/r-reference_catboost-save_model-docpage/)
+[CatBoost](https://tech.yandex.com/catboost/doc/dg/concepts/about-docpage/) is a library by
+[Yandex](https://en.wikipedia.org/wiki/Yandex) implementing gradient boosting on decision trees. It features C++ core, Python,
+R and command-line interfaces.
+
+In R built-in serialization in RDS [won't work](https://github.com/catboost/catboost/issues/91) for CatBoost models but
+there are [save_model](https://tech.yandex.com/catboost/doc/dg/concepts/r-reference_catboost-save_model-docpage/)
 and [load_model](https://tech.yandex.com/catboost/doc/dg/concepts/r-reference_catboost-load_model-docpage/) methods covers
-the basic needs.
+the have you covered.
+
+CatBoost Python package has familiar pair of methods
+[to save](https://tech.yandex.com/catboost/doc/dg/concepts/python-reference_catboost-docpage/#save_model)
+the model and to [load it back](https://tech.yandex.com/catboost/doc/dg/concepts/python-reference_catboost-docpage/#load_model).
+Python API also supports saving trained CatBoost models to Apple CoreML format:
+
+    :::python
+    # TODO
+    print("The path-less shebang syntax *will* show line numbers.")
 
 ### Spark MLLib
 
 Starting from Spark 1.6, MLLib transformers and models can be persisted and later loaded.
 
-Pipeline API also has
+MLLib Pipeline API also has
 [export/import functionality](https://docs.cloud.databricks.com/docs/spark/1.6/examples/ML%20Pipeline%20Persistence.html)
 which requires every component of the pipeline to implement the save/load methods.
 
@@ -123,6 +137,12 @@ as well as [coremltools](https://pypi.python.org/pypi/coremltools) Python packag
 
 Interesting to see that Apple decided not to support PMML as one of the import formats.
 
+### Baidu Mobile Deep Learning
+
+Baidu's [MDL](https://github.com/baidu/mobile-deep-learning) is a new kid on the block, similar to Apple CoreML,
+it's a library for deploying deep learning models to mobile devices with support for iOS and Android. Models trained in
+[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) and Caffe can be converted into MDL format.
+
 ### Clipper
 
 [Clipper](http://clipper.ai/) is another product for *running* trained models. It allows deploying models as microservices
@@ -130,12 +150,6 @@ that can be invoked by other services within the IT landscape of the company, fo
 a feature service to fetch the variables and then call Clipper to make the predictions. Trained Python models
 [can be deployed directly](http://clipper.ai/documentation/python_model_deployment/) into Clipper, a prediction serving
 service by UC Berkeley [RISE Lab](https://rise.cs.berkeley.edu/).
-
-### Baidu Mobile Deep Learning
-
-Baidu's [MDL](https://github.com/baidu/mobile-deep-learning) is another new kid on the block, similarly to Apple CoreML,
-it's a library for deploying deep learning models to mobile devices with support for iOS and Android. Models trained in
-[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) and TODO
 
 ## Model persistence using programming language standard libraries
 
