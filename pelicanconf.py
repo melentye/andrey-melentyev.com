@@ -72,6 +72,8 @@ STATIC_PATHS = [
 EXTRA_PATH_METADATA = {
     'static/yandex_44baf762e45a6938.html': {'path': 'yandex_44baf762e45a6938.html'},
     'static/robots.txt': {'path': 'robots.txt'},
+    'static/resume.html': {'path': 'resume.html'},
+    'static/resume.css': {'path': 'resume.css'},
 }
 
 # Sitemap configuration
