@@ -12,8 +12,8 @@ another team, or when the model needs to be executed in environments completely 
 as edge devices or client-side in a browser.
 
 In this articles we will explore various types of model interchange formats, including those provided by machine learning
-frameworks, natively in programming languages and designated interchange formats. At the end we'll briefly touch
-[Apple CoreML](https://developer.apple.com/documentation/coreml) and the kinds of model formats it supports.
+frameworks, natively in programming languages and designated interchange formats. We'll briefly touch
+Apple CoreML, Baidu MDL and NNVM and the kinds of model formats they support.
 
 [TOC]
 
@@ -39,13 +39,16 @@ for sklearn decision trees and ensembles, but hasn't been updated for 11 months 
 ### XGBoost
 
 [XGBoost](https://xgboost.readthedocs.io/en/latest/) gradient boosting library core is written in C++ with APIs available
-for Python, R, Java and Scala. Model saving and loading is offered via a pair of methods and there are examples
+for Python, R, Java and Scala. Model saving and loading is done into an framework-specific format and is offered via a
+pair of methods, there are examples
 [in Python](http://xgboost.readthedocs.io/en/latest/python/python_intro.html#training) and
 [in R](http://xgboost.readthedocs.io/en/latest/R-package/xgboostPresentation.html#save-and-load-models).
 Because the model persistence logic is delegated to the library core, an XGB model trained in R or Python can then be exported
 and loaded into a prediction module written in a different, possibly more performant langugage such as C++.
 
 XGBoost models can be converted to PMML using [jpmml-xgboost](https://github.com/jpmml/jpmml-xgboost) by Openscoring.io.
+
+Models can also be converted to Apple CoreML using [coremltools](https://github.com/apple/coremltools).
 
 ### LightGBM
 
@@ -120,20 +123,27 @@ DL4J also has its own [model persistence format](https://deeplearning4j.org/mode
 import of Tensorflow models is planned (right now it is only possible to import a Tensorflow model if it is created in
 Keras).
 
-## Prediction frameworks and their supported formats
+## Other frameworks and their supported formats
 
 ### Apple CoreML
 
 Apple has recently released [CoreML](https://developer.apple.com/documentation/coreml) - a library for *running* trained
-machine learning models on iOS and macOS. In contrast to the rest of the frameworks mention above, CoreML is not for
-training models. It is shipped with a set of pre-trained models but it is not a data analysis/modelling framework like scikit-learn.
+machine learning models on iOS and macOS. In contrast to the rest of the frameworks mention above, CoreML itself can't
+be used for training models. It is shipped with a set of pre-trained models for computer vision and natural language
+processing tasks. Models trained using other frameworks can be converted into CoreML `.mlmodel` format. It
+is a binary format using [Google Protocol Buffers](https://developers.google.com/protocol-buffers/) to
+describe the schema and with a [publicly available specification](https://apple.github.io/coremltools/coremlspecification/index.html).
+
 The introductory [WWDC 2017 presentation on CoreML](https://developer.apple.com/videos/play/wwdc2017/703/) lists the supported
-by CoreML modelling frameworks. Trained models exported from these frameworks can be converted into CoreML `.mlmodel` format.
-The following frameworks are supported: Caffe and Keras for neural nets (only outdated major versions at the time of
-announcement), scikit-learn and XGBoost for tree ensembles, [LIBSVM](http://www.csie.ntu.edu.tw/~cjlin/libsvm/) and
-scikit-learn for SVM and some more models from scikit-learn. There's a documentation page explaining
+by CoreML conversion tool modelling frameworks. The following frameworks are supported: Caffe and Keras for neural nets
+(only outdated major versions at the time of announcement), scikit-learn and XGBoost for tree ensembles,
+[LIBSVM](http://www.csie.ntu.edu.tw/~cjlin/libsvm/) and scikit-learn for SVM and some more models from scikit-learn.
+
+![CoreML supported model formats]({attach}static/images/coreml-formats.png)
+
+There's a page explaining
 [how to convert a model into CoreML format](https://developer.apple.com/documentation/coreml/converting_trained_models_to_core_ml)
-as well as [coremltools](https://pypi.python.org/pypi/coremltools) Python package with reference implementations of the converters.
+and the conversion [coremltools](https://github.com/apple/coremltools) themselves are open source.
 
 Interesting to see that Apple decided not to support PMML as one of the import formats.
 
@@ -150,6 +160,30 @@ that can be invoked by other services within the IT landscape of the company, fo
 a feature service to fetch the variables and then call Clipper to make the predictions. Trained Python models
 [can be deployed directly](http://clipper.ai/documentation/python_model_deployment/) into Clipper, a prediction serving
 service by UC Berkeley [RISE Lab](https://rise.cs.berkeley.edu/).
+
+### NNVM
+
+While this article was being written, AWS
+[announced NNVM](https://aws.amazon.com/blogs/ai/introducing-nnvm-compiler-a-new-open-end-to-end-compiler-for-ai-frameworks/),
+a framework for compiling models created in deep learning frameworks into optimized machine codes (LLVM Intermediate Representation
+for CPUs, CUDA and other for GPUs). The process consists of two stages:
+
+1. NNVM compiler, based on the model from a deep learning framework such as Keras or MXNet, creates and
+   optimizes a computation graph.
+1. TVM implements and optimizes the output of NNVM to be executed on a target platform (CPU, GPU or mobile).
+
+NNVM is still on early stages and currently supports MXNet and CoreML models. Caffe and Keras are supported indirectly
+via conversion to CoreML and explicit support for Keras is planned.
+
+![NNVM supported frameworks and targets]({attach}static/images/nnvm-formats.png)
+
+Note that in the referenced above announcement, a special terminology is employed where the modelling framework is
+referred to as the *frontend* and the piece that will execute the model is called the *backend*. However such
+terminology can be slightly confusing for two reasons:
+
+* *Frontend* is often associated with the user-facing part while *backend* is something that is hidden. If we treat the
+  algorithm developer as the user here, such terminology makes sense.
+* When using Keras, the word *backend* already has a different meaning, it's the choice between Theano, Tensorflow and CNTK.
 
 ## Model persistence using programming language standard libraries
 
@@ -186,7 +220,7 @@ Some types of models that PMML supports are neural networks, SVM, Naive Bayes cl
 
 ### Open Neural Network Exchange (ONNX)
 
-## Custom model interchange formats
+### Custom model interchange formats
 
 The article merely gives an overview of what's already available, I will not rule out that in some cases implementing
 your own custom format may be worthwhile.

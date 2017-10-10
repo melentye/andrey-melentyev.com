@@ -2,20 +2,26 @@
 @import url("codehilite.css");
 
 nav ul {
- margin-left: 0;
- padding-left: 0;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 nav li {
- display: inline-block;
+    display: inline-block;
 }
 
 ol#post-list {
- list-style: none;
- margin-left: 0;
- padding-left: 0;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 time.published {
- font-size: smaller;
+    font-size: smaller;
+}
+
+img {
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
 }
