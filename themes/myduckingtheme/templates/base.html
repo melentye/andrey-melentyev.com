@@ -36,10 +36,14 @@
 </head>
 
 <body id="index" class="home">
-        <header id="banner" class="body">
-                <h1>{{ SITENAME }}</h1>
-                <aside>{{ SITESUBTITLE }}</aside>
-        </header><!-- /#banner -->
+  <header id="banner" class="body">
+    {% block content_title %}
+    <h1>{{ SITENAME }}</h1>
+    <aside>{{ SITESUBTITLE }}</aside>
+    {% endblock %}
+  </header><!-- /#banner -->
+        {% block content %}
+        {% endblock %}
         <nav id="menu"><ul>
         {% for title, link in MENUITEMS %}
             <li><a href="{{ link }}">{{ title }}</a></li>
@@ -56,8 +60,6 @@
           {% endif %}
         {% endif %}
         </ul></nav><!-- /#menu -->
-        {% block content %}
-        {% endblock %}
         <hr>
         <footer id="contentinfo" class="body">
             {% if GITHUB_URL %}

@@ -11,19 +11,22 @@
 
 {% endblock %}
 
+{% block content_title %}
+    <h1 class="entry-title">
+      <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
+         title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
+    </h1>
+{% endblock %}
+
 {% block content %}
 <section id="content" class="body">
-  <header>
-    <h2 class="entry-title">
-      <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
-         title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
- {% import 'translations.html' as translations with context %}
- {{ translations.translations_for(article) }}
-  </header>
+{% import 'translations.html' as translations with context %}
+{{ translations.translations_for(article) }}
   <div class="entry-content">
     {{ article.content }}
   </div><!-- /.entry-content -->
   <footer class="post-info">
+    <!-- hide until I figure out a good place to show this
     <time class="published" datetime="{{ article.date.isoformat() }}">
         Published on {{ article.locale_date }}
     </time>
@@ -32,7 +35,8 @@
         and last updated on {{ article.locale_modified }}
     </time>
     {% endif %}
-    {% if article.authors %}
+    -->
+    {% if article.authors and (article.authors|join is not equalto AUTHOR) %}
     <address class="vcard author">
         By {% for author in article.authors %}
         <a class="url fn" href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>

@@ -8,8 +8,10 @@
     {{ page.content }}
 
 	{% if page.modified %}
-		<p>
-		Last updated: {{ page.locale_modified }}
-		</p>
+	<!-- hide until I figure out a good place to show this
+	    <time class="modified" datetime="{{ page.modified.isoformat() }}">
+			Last updated on {{ page.locale_modified }}
+		</time>
+	-->
 	{% endif %}
 {% endblock %}
