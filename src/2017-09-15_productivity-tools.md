@@ -1,7 +1,7 @@
 Title: Productivity tools
 Modified: 2017-09-16 11:21
 Tags: productivity, apps
-Summary: An overview of the tools and methods I use to organize my personal and work life
+Summary: An overview of the tools and methods I use to organize my personal and work life.
 
 This article is by no means a comprehensive overview or a fair comparison of the tools but rather my personal
 preferences with bits of advice that can be applied to almost any software.
@@ -53,7 +53,7 @@ Google Apps server and I don't access it on my personal device.
 
 I started doing zero inbox before it was cool and for legacy reasons continue doing so without the help of additional
 tools. Modern email services from ProtonMail, Gmail or Apple all support archiving emails. My workflow for both
-personal and work mailboxes is to quickly read skim through all the incoming correspondence and immediately archive it
+personal and work mailboxes is to quickly skim through all the incoming correspondence and immediately archive it
 if it doesn't require an action. You may be surprised how many emails, especially the work ones, do not assume any
 sort of reaction except for being read and sometimes not even that. If an email is actionable and requires a response,
 it stays in the inbox. Depending on the nature of the email it may lead to some items being created in the to-do

@@ -1,7 +1,7 @@
 Title: My ML learning path
 Modified: 2017-09-16 11:21
 Tags: machine learning, education
-Summary: A story on how I learned myself some machine learning and an advice to fellow engineers
+Summary: A story on how I learned myself some machine learning and an advice to fellow engineers.
 
 My colleague, [Mariana Bocoi](https://twitter.com/MarianaBocoi) was so kind as to invite me to the dry-run of her
 presentation on _Machine Learning for the masses_ where she speaks about her experience getting to know machine learning,
