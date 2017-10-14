@@ -55,7 +55,8 @@ time.modified {
 
 .home {
     max-width: 800px;
-    margin: 0px auto;
+    margin: 0 auto;
+    padding: .5em;
 }
 
 img {
