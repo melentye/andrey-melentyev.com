@@ -42,8 +42,9 @@
     <aside>{{ SITESUBTITLE }}</aside>
     {% endblock %}
   </header><!-- /#banner -->
-        {% block content %}
-        {% endblock %}
+  {% block content %}
+  {% endblock %}
+  <hr>      
         <nav id="menu"><ul>
         {% for title, link in MENUITEMS %}
             <li><a href="{{ link }}">{{ title }}</a></li>
@@ -59,8 +60,8 @@
             {% endfor %}
           {% endif %}
         {% endif %}
-        </ul></nav><!-- /#menu -->
-        <hr>
+        </ul></nav><!-- /#menu -->     
+        <hr>   
         <footer id="contentinfo" class="body">
             {% if GITHUB_URL %}
             <small>Found an issue? Submit <a href="{{ GITHUB_URL }}">feedback or a pull request on GitHub.</a></small>
