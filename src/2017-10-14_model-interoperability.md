@@ -6,9 +6,9 @@ Summary: How the trained models can be persisted and reused across libraries and
 
 The post will describe how the **trained models** can be persisted and reused across machine learning **libraries**
 and **environments**, i.e. how they can *interoperate*.
-To be more specific, let's first introduce some definitions: *trained model* is the artifact produced by the machine
+To be more specific, let's first introduce some definitions: a *trained model* is an artefact produced by the machine
 learning algorithm as part of training which can be used for inference. *Library* refers to a software package like
-scikit-learn or Tensorflow. *Environment* is roughly speaking a combination of hardware and operating system. We
+scikit-learn or Tensorflow. An *environment* is roughly speaking a combination of hardware and operating system. We
 will distinguish between training and inference environments. An example of a training environment is a data
 scientist's MacBook running macOS, and an inference environment could be a production server in the cloud.
 
@@ -22,7 +22,7 @@ There are multiple cases when model interoperability is important:
 * The company is organized in such a way that the features and the model are developed by one team, and deployed by
   another team which prefers another language or library.
 
-In this article we will explore various options of model interoperability, look at the model interchange formats,
+In this article, we will explore various options of model interoperability, look at the model interchange formats,
 including those provided by machine learning libraries, natively in programming languages and designated interchange
 formats. We'll briefly touch upon Apple CoreML, Baidu MDL, NNVM and the kinds of models they support.
 
@@ -37,7 +37,7 @@ This section gives an overview of the ML library interoperability features.
 [scikit-learn](http://scikit-learn.org/)'s recommended way of model persistence is to use
 [Pickle]({filename}/2017-10-14_model-interoperability.md#other-python-libraries). The alternative is the `sklearn.externals.joblib`
 module with `dump` and `load` functions which may be more efficient. Refer to
-[the documentation](http://scikit-learn.org/stable/modules/model_persistence.html) for code example.
+[the documentation](http://scikit-learn.org/stable/modules/model_persistence.html) for a code example.
 Such a persisted model cannot be directly used by other libraries but can be deployed to an inference environment
 if it happens to be able to run Python.
 
@@ -46,24 +46,24 @@ Linear and logistic regression, SVM, tree models and some of the preprocessing t
 
 [sklearn-porter](https://github.com/nok/sklearn-porter) allows transpiling trained scikit-learn models into C, Java, JavaScript
 and other languages. [Scikit-Learn Compiled Trees](https://github.com/ajtulloch/sklearn-compiledtrees/) creates C++ code
-for sklearn decision trees and ensembles, but hasn't been updated for 11 months at the time of writing.
+for sklearn decision trees and ensembles but hasn't been updated for 11 months at the time of writing.
 
 There's a [sklearn2pmml](https://github.com/jpmml/sklearn2pmml) library by Openscoring.io team that allows exporting
 scikit-learn models to [PMML]({filename}/2017-10-14_model-interoperability.md#predictive-model-markup-language-pmml).
 It is implemented as a Python wrapper around
 [a Java library](https://github.com/jpmml/jpmml-sklearn) and it is somewhat unclear which types of sklearn models are supported.
-It is also worth noting that these Openscoring.io software is distributed under a viral
+It is also worth noting that Openscoring.io software is distributed under a viral
 [GNU Affero General Public License](https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)).
 
 ### XGBoost
 
 [XGBoost](https://xgboost.readthedocs.io/en/latest/) gradient boosted decision trees library core is written in C++
-with APIs available for Python, R, Java and Scala. Model saving and loading is done into an library-specific format
+with APIs available for Python, R, Java and Scala. Model saving and loading is done into a library-specific format
 and is offered via a pair of methods, there are examples
 [in Python](http://xgboost.readthedocs.io/en/latest/python/python_intro.html#training) and
 [in R](http://xgboost.readthedocs.io/en/latest/R-package/xgboostPresentation.html#save-and-load-models).
 Because the model persistence logic is delegated to the library core, an XGB model trained in R or Python can then be exported
-and loaded into an XGB inference module written in a different, possibly more performant langugage such as C++:
+and loaded into an XGB inference module written in a different, possibly more performant language such as C++:
 
 ![XGBoost language interoperability]({attach}static/images/xgboost-languages.png)
 
@@ -76,10 +76,10 @@ using [jpmml-xgboost](https://github.com/jpmml/jpmml-xgboost) by Openscoring.io.
 ### LightGBM
 
 [LightGBM](https://github.com/Microsoft/LightGBM) is another popular decision tree gradient boosting library, created
-by Microsoft. Just like XGBoost its core is written in C++ with APIs in R and Python. Code examples
+by Microsoft. Just like XGBoost, its core is written in C++ with APIs in R and Python. Code examples
 [in R](https://github.com/Microsoft/LightGBM/blob/master/R-package/demo/basic_walkthrough.R) and
 [Python](https://github.com/Microsoft/LightGBM/blob/master/tests/python_package_test/test_basic.py) show how to save and
-load models into LightGBM internal format.
+load models into the LightGBM internal format.
 
 LightGBM models can be converted to [PMML]({filename}/2017-10-14_model-interoperability.md#predictive-model-markup-language-pmml)
 using [jpmml-lightgbm](https://github.com/jpmml/jpmml-lightgbm) by Openscoring.io.
@@ -92,10 +92,10 @@ R and command-line interfaces.
 
 In R, built-in serialization in RDS [won't work](https://github.com/catboost/catboost/issues/91) for CatBoost models but
 there are [save_model](https://tech.yandex.com/catboost/doc/dg/concepts/r-reference_catboost-save_model-docpage/)
-and [load_model](https://tech.yandex.com/catboost/doc/dg/concepts/r-reference_catboost-load_model-docpage/) methods covers
+and [load_model](https://tech.yandex.com/catboost/doc/dg/concepts/r-reference_catboost-load_model-docpage/) methods cover
 the have you covered.
 
-CatBoost Python package has familiar pair of methods
+CatBoost Python package has a familiar pair of methods
 [to save](https://tech.yandex.com/catboost/doc/dg/concepts/python-reference_catboost-docpage/#save_model)
 the model and to [load it back](https://tech.yandex.com/catboost/doc/dg/concepts/python-reference_catboost-docpage/#load_model).
 Python API also supports saving trained CatBoost models to 
@@ -113,13 +113,13 @@ Python API also supports saving trained CatBoost models to
                    format='coreml',
                    export_parameters={'prediction_type': 'probability'})
 
-Produces a CoreML model
+produces a CoreML model
 
     :::shell
     $ file wine.mlmodel
     wine.mlmodel: PDP-11 pure executable not stripped - version 101
 
-Which can later be imported into a macOS or iOS app.
+that can later be imported into a macOS or iOS app.
 
 ### Spark MLLib
 
@@ -139,7 +139,7 @@ storage and [offers advice](http://deeplearning.net/software/theano/tutorial/loa
 storage.
 
 As for the production deployments, a custom solution with Theano packaged in a Docker container is possible, although
-that would still require to have a C++ compiler in the container. There are some more
+that would still require having a C++ compiler in the container. There are some more
 [bits of advice](https://github.com/Theano/Theano/issues/2271) on Theano issue tracker but it's unlikely we will see
 more on this now that the library's development is discontinued.
 
@@ -152,12 +152,12 @@ step for Tensorflow being a Google product.
 
 The logical choice for serving Tensorflow models server-side would be
 [Tensorflow Serving]({filename}/2017-10-14_model-interoperability.md#tensorflow-serving). For edge devices, trained
-model can be converted to CoreML format and deployed as part of a macOS or iOS app.
+model can be converted to the CoreML format and deployed as part of a macOS or iOS app.
 
 ### Keras
 
 [Keras](https://keras.io/) is a deep learning library written by [François Chollet](https://twitter.com/fchollet) in
-Python, it providies high-level abstractions for building neural network models. It allows defining the network
+Python, it provides high-level abstractions for building neural network models. It allows defining the network
 architecture in clean and human-readable code and it delegates the actual training to Theano, Tensorflow or CNTK.
 
 Keras documentation [recommends using its built-in method of model persistence](https://keras.io/getting-started/faq/#how-can-i-save-a-keras-model)
@@ -175,7 +175,7 @@ and loaded across Keras backends,
 
 ### PyTorch
 
-Like Keras, supports exporting the entire model or just the parameters as documented [here](http://pytorch.org/docs/master/notes/serialization.html).
+Like Keras supports exporting the entire model or just the parameters as documented [here](http://pytorch.org/docs/master/notes/serialization.html).
 The implementation uses [Python Pickle]({filename}/2017-10-14_model-interoperability.md#other-python-libraries) under
 the hood.
 
@@ -187,7 +187,7 @@ computation is not done in JVM but rather written in C and C++. It has an additi
 importing just the model architecture from `.json` file and importing a model together with weights from the `.h5`.
 Once loaded into DL4J, a model can be further trained or deployed into an inference environment for predictions.
 
-DL4J also has its own [model persistence format](https://deeplearning4j.org/modelpersistence). Later in 2017 a direct
+DL4J also has its own [model persistence format](https://deeplearning4j.org/modelpersistence). Later in 2017, a direct
 import of Tensorflow models is planned (right now it is only possible to import a Tensorflow model if it is created in
 Keras).
 
@@ -225,14 +225,14 @@ a lightweight web application framework for Python.
 
 Note that pickling might not be a suitable approach for long-term model storage, due to the fact that it doesn't store
 classes, only their instances. Therefore it may not be possible to deserialize a model trained by an older version of
-a library using a newer one. Model persistence functionality provided by the machine learning library is preferrable
+a library using a newer one. Model persistence functionality provided by the machine learning library is preferable
 when exists.
 
 ## Inference time software packages
 
 ### Tensorflow Serving
 
-[Tensorflow Serving](https://www.tensorflow.org/serving/) is a product whose purpuse is, unsurprisingly, to serve
+[Tensorflow Serving](https://www.tensorflow.org/serving/) is a product whose purpose is, unsurprisingly, to serve
 Tensorflow models. It exposes a [gRPC](https://grpc.io/) endpoint that can be deployed into production infrastructure
 and be called by other components that need to run machine learning models.
 
@@ -255,7 +255,7 @@ allows that and XGBoost offers a C++ API.
 Apple has recently released [CoreML](https://developer.apple.com/documentation/coreml) - a framework for *running*
 trained machine learning models on iOS and macOS. In contrast to the libraries mention above, CoreML
 itself can't be used for training models. It is shipped with a set of pre-trained models for computer vision and
-natural language processing tasks. Models trained using other libraries can be converted into CoreML `.mlmodel`
+natural language processing tasks. Models trained using other libraries can be converted into the CoreML `.mlmodel`
 format. It is a binary format using [Google Protocol Buffers](https://developers.google.com/protocol-buffers/) to
 describe the schema and with a [publicly available specification](https://apple.github.io/coremltools/coremlspecification/index.html).
 A great thing about building on top of Protocol Buffers is that they have support for virtually all major programming
@@ -269,7 +269,7 @@ by CoreML conversion tool ML libraries. The following libraries are supported: C
 ![CoreML supported model formats]({attach}static/images/coreml-formats.png)
 
 There's a page explaining
-[how to convert a model into CoreML format](https://developer.apple.com/documentation/coreml/converting_trained_models_to_core_ml)
+[how to convert a model into the CoreML format](https://developer.apple.com/documentation/coreml/converting_trained_models_to_core_ml)
 and the conversion [coremltools](https://github.com/apple/coremltools) themselves are open source.
 
 Unofficial [MXNet to Core ML converter tool](https://github.com/apache/incubator-mxnet/tree/master/tools/coreml) is available,
@@ -286,7 +286,7 @@ it is a library for deploying deep learning models to mobile devices with suppor
 
 ### Clipper
 
-[Clipper](http://clipper.ai/) is a prediction serving system by by UC Berkeley
+[Clipper](http://clipper.ai/) is a prediction serving system by UC Berkeley
 [RISE Lab](https://rise.cs.berkeley.edu/). It allows deploying models as microservices with
 [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) interfaces that can be invoked by other systems
 within the IT landscape of the organization. For example, a rules engine may call out to a feature service to fetch the
@@ -320,7 +320,7 @@ Intermediate Representation for CPUs, CUDA and other for GPUs). The process cons
 1. [TVM](http://tvmlang.org/2017/08/17/tvm-release-announcement.html) takes the computational graph intermediate representation
    as an input, implements and optimizes it to be executed on a target platform (CPU, GPU or mobile).
 
-NNVM is still on early stages and currently supports MXNet and CoreML models. Caffe and Keras are supported indirectly
+NNVM is still in early stages and currently supports MXNet and CoreML models. Caffe and Keras are supported indirectly
 via conversion to CoreML and explicit support for Keras is planned.
 
 ![NNVM supported libraries and targets]({attach}static/images/nnvm-formats.png)
@@ -333,16 +333,19 @@ such terminology can be slightly confusing for two reasons:
   algorithm developer as the user here, such terminology makes sense.
 * When using Keras, the word *backend* already has a different meaning, it is the choice between Theano, Tensorflow and CNTK.
 
+It is not exactly correct to list NNVM in the inference software packages, but at the moment it seems to be targeting
+this segment while relying on the other *frontend* frameworks for the model design and training.
+
 ## Designated model interchange formats
 
 ### Open Neural Network Exchange (ONNX)
 
 [ONNX](https://github.com/onnx/onnx) is a neural network model interchange format with the goal of enabling
-interoperability between across deep learning libraries. Like CoreML, uses Google Protocol Buffers for the schema
+interoperability between across deep learning libraries. Like CoreML uses Google Protocol Buffers for the schema
 definition. Announced in September 2017
 [by Microsoft](https://www.microsoft.com/en-us/cognitive-toolkit/blog/2017/09/microsoft-facebook-create-open-ecosystem-ai-model-interoperability/)
 and [Facebook](https://research.fb.com/facebook-and-microsoft-introduce-new-open-ecosystem-for-interchangeable-ai-frameworks/),
-it is on the early stages. Support for PyTorch, Caffe2 and CNTK is planned.
+it is in the early stages. Support for PyTorch, Caffe2 and CNTK is planned.
 
 > ONNX provides an open source format for AI models. It defines an extensible computation graph model, as well
 > as definitions of built-in operators and standard data types. Initially we focus on the capabilities needed for
@@ -362,21 +365,21 @@ PMML has third-party support, most often implemented by Openscoring.io, for many
 libraries. It is sometimes referred to as the "de facto standard" for model interoperability.
 That being said, Apple in their CoreML went for a custom model exchange format, Facebook and Microsoft teamed up
 to create ONNX; the position of PMML in the area of deep learning is not as strong. XML is no longer the engineers'
-favorite format for exchanging data.
+favourite format for exchanging data.
 
 ### Portable Format for Analytics (PFA)
 
 PMML's successor [PFA](http://dmg.org/pfa/index.html) is developed by the same organization, the Data Mining Group.
-It will use [Avro](https://avro.apache.org/docs/current/) which is in many ways similar to Google Protocol Buffers.
+It uses [Avro](https://avro.apache.org/docs/current/) which is in many ways similar to Google Protocol Buffers.
 It is unclear if PFA is currently supported by any software package.
 
 ## Last words
 
-In classical "shallow" machine learning area, PMML seems to be the only independent standard. In some cases it is possible
-to use one library for training and then transpile the model for predictions without using an intermediate format,
-like we saw for XGBoost.
+In classical "shallow" machine learning area, PMML seems to be the only independent standard with noticable degree of
+adoption. In some cases, it is possible to use one library for training and then transpile the model for inference
+without using an intermediate format like we saw for XGBoost. Some products specialize in serving predictions.
 
-The world of deep learning is changing fast and just over the last few months a number of new and promising projects
+The world of deep learning is changing fast, just over the last few months a number of new and promising projects
 were announced, including ONNX and NNVM. It is interesting to see if ONNX and NNVM will be widely accepted by the
 community. A mature combination of the two could possibly lead to a situation where the user's choice of the deep
 learning library for training will not limit the target inference environment. I can only speculate but CoreML model
