@@ -1,7 +1,6 @@
 Title: Model interoperability
 Tags: machine learning, interoperability, keras, xgboost, sklearn, lightgbm, catboost, spark, theano, tensorflow, pytorth, dl4j, coreml, nnvm, onnx, pmml
 Modified: 2017-10-14 17:54
-Status: draft
 Summary: How the trained models can be persisted and reused across libraries and environments.
 
 The post will describe how the **trained models** can be persisted and reused across machine learning **libraries**
