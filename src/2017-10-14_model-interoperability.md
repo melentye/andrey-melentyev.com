@@ -374,9 +374,12 @@ It is unclear if PFA is currently supported by any software package.
 
 ## Last words
 
-In classical "shallow" machine learning area, PMML seems to be the only independent standard with noticable degree of
-adoption. In some cases, it is possible to use one library for training and then transpile the model for inference
-without using an intermediate format like we saw for XGBoost. Some products specialize in serving predictions.
+In classical "shallow" machine learning area, PMML seems to be the only independent standard with a noticeable degree
+of adoption. Even without a good model interchange format, there's usually a way to deploy a model server-side by
+wrapping it in a custom web service or using a product like Tensorflow Serving or Clipper.
+
+Mobile devices can access such a model using the client-server type of communication. Alternatively, a model can be
+transpired into one of the languages supported by the mobile platform.
 
 The world of deep learning is changing fast, just over the last few months a number of new and promising projects
 were announced, including ONNX and NNVM. It is interesting to see if ONNX and NNVM will be widely accepted by the
