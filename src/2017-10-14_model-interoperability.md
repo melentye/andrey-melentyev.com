@@ -5,7 +5,7 @@ Summary: How the trained models can be persisted and reused across libraries and
 
 The post will describe how the **trained models** can be persisted and reused across machine learning **libraries**
 and **environments**, i.e. how they can *interoperate*.
-To be more specific, let's first introduce some definitions: a *trained model* is an artefact produced by the machine
+To be more specific, let's first introduce some definitions: a *trained model* is an artefact produced by a machine
 learning algorithm as part of training which can be used for inference. *Library* refers to a software package like
 scikit-learn or Tensorflow. An *environment* is roughly speaking a combination of hardware and operating system. We
 will distinguish between training and inference environments. An example of a training environment is a data
@@ -17,13 +17,13 @@ There are multiple cases when model interoperability is important:
   not available in the latter. For example, the model is trained with distributed Tensorflow on a cluster with a
   hundred GPUs then needs to be executed on an iPhone.
 * There are strict requirements to the inference latency, and the language or library used for training is not
-  performant enough.
-* The company is organized in such a way that the features and the model are developed by one team, and deployed by
+  performant enough to support these requirements.
+* The company is organized in such a way that the features and the model are developed by one team and deployed by
   another team which prefers another language or library.
 
 In this article, we will explore various options of model interoperability, look at the model interchange formats,
-including those provided by machine learning libraries, natively in programming languages and designated interchange
-formats. We'll briefly touch upon Apple CoreML, Baidu MDL, NNVM and the kinds of models they support.
+including those provided by machine learning libraries, natively in programming languages, and designated interchange
+formats. We'll briefly touch upon Apple CoreML, Baidu MDL, NNVM, and the kinds of models they support.
 
 [TOC]
 
@@ -91,8 +91,8 @@ R and command-line interfaces.
 
 In R, built-in serialization in RDS [won't work](https://github.com/catboost/catboost/issues/91) for CatBoost models but
 there are [save_model](https://tech.yandex.com/catboost/doc/dg/concepts/r-reference_catboost-save_model-docpage/)
-and [load_model](https://tech.yandex.com/catboost/doc/dg/concepts/r-reference_catboost-load_model-docpage/) methods cover
-the have you covered.
+and [load_model](https://tech.yandex.com/catboost/doc/dg/concepts/r-reference_catboost-load_model-docpage/) methods
+covering basic import/export needs.
 
 CatBoost Python package has a familiar pair of methods
 [to save](https://tech.yandex.com/catboost/doc/dg/concepts/python-reference_catboost-docpage/#save_model)
@@ -133,9 +133,9 @@ lasso regression models, k-means clustering, SVM and binary logistic regression 
 
 ### Theano
 
-Theano recommends [Pickle]({filename}/2017-10-14_model-interoperability.md#other-python-libraries) model serialization for short-term
-storage and [offers advice](http://deeplearning.net/software/theano/tutorial/loading_and_saving.html) on long-term
-storage.
+Theano recommends [Pickle]({filename}/2017-10-14_model-interoperability.md#other-python-libraries) model serialization
+for short-term storage and [offers advice](http://deeplearning.net/software/theano/tutorial/loading_and_saving.html)
+on long-term storage.
 
 As for the production deployments, a custom solution with Theano packaged in a Docker container is possible, although
 that would still require having a C++ compiler in the container. There are some more
@@ -149,9 +149,10 @@ you can store a model trained with Tensorflow Python package and then load it fr
 [Google Protocol Buffers](https://developers.google.com/protocol-buffers/) for schema definition, kind of a logical
 step for Tensorflow being a Google product.
 
-The logical choice for serving Tensorflow models server-side would be
-[Tensorflow Serving]({filename}/2017-10-14_model-interoperability.md#tensorflow-serving). For edge devices, trained
-model can be converted to the CoreML format and deployed as part of a macOS or iOS app.
+The default choice for serving Tensorflow models server-side would be
+[Tensorflow Serving]({filename}/2017-10-14_model-interoperability.md#tensorflow-serving). For edge devices, a trained
+model can be converted to the [CoreML]({filename}/2017-10-14_model-interoperability.md#apple-coreml) format and
+deployed as part of a macOS or iOS app.
 
 ### Keras
 
@@ -192,11 +193,10 @@ Keras).
 
 ### Other R libraries
 
-For those R libraries that don't offer their own way of saving and loading models, R offers object
+For those R libraries that don't have their own way of saving and loading models, R offers object
 serialization/deserialization using
 [saveRDS/readRDS](https://stat.ethz.ch/R-manual/R-devel/library/base/html/readRDS.html)
-or [save](https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html)/
-[load](https://stat.ethz.ch/R-manual/R-devel/library/base/html/load.html).
+or [save](https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html)/[load](https://stat.ethz.ch/R-manual/R-devel/library/base/html/load.html).
 The resulting format while being available to all R users is not scoring too high on the interoperability scale.
 
 R models can nevertheless be deployed server-side by utilizing [Rserve](https://www.rforge.net/Rserve/). A setup with
@@ -233,9 +233,8 @@ when exists.
 
 [Tensorflow Serving](https://www.tensorflow.org/serving/) is a product whose purpose is, unsurprisingly, to serve
 Tensorflow models. It exposes a [gRPC](https://grpc.io/) endpoint that can be deployed into production infrastructure
-and be called by other components that need to run machine learning models.
-
-It also supports model versioning,
+and called by other components that need to run machine learning models. It supports model versioning, enabling A/B
+testing and rolling upgrades.
 
 Tensorflow Serving is not limited to Tensorflow models and can be tailored to execute arbitrary model code while
 providing nice abstractions around it. Such a custom model needs to have a wrapper written in C++ called
@@ -246,12 +245,12 @@ deployment of a trained XGB model where Tensorflow Serving uses a custom servabl
 
 ![Tensorflow Serving XGB model]({attach}static/images/xgb-tf-serving.png)
 
-On the figure above, XGBoost Servable is something that the developer will have to come up with - Tensorflow Serving
-allows that and XGBoost offers a C++ API.
+In the figure above, XGBoost Servable is something that the developer will have to come up with - Tensorflow Serving
+allows having custom servables and XGBoost offers a C++ API but in practice this hasn't been done yet.
 
 ### Apple CoreML
 
-Apple has recently released [CoreML](https://developer.apple.com/documentation/coreml) - a framework for *running*
+Apple has recently released [CoreML](https://developer.apple.com/documentation/coreml) - a framework for executing
 trained machine learning models on iOS and macOS. In contrast to the libraries mention above, CoreML
 itself can't be used for training models. It is shipped with a set of pre-trained models for computer vision and
 natural language processing tasks. Models trained using other libraries can be converted into the CoreML `.mlmodel`
@@ -263,7 +262,7 @@ languages.
 The introductory [WWDC 2017 presentation on CoreML](https://developer.apple.com/videos/play/wwdc2017/703/) lists the supported
 by CoreML conversion tool ML libraries. The following libraries are supported: Caffe and Keras for neural nets
 (only outdated major versions at the time of announcement), scikit-learn and XGBoost for tree ensembles,
-[LIBSVM](http://www.csie.ntu.edu.tw/~cjlin/libsvm/) and scikit-learn for SVM and some more models from scikit-learn.
+[LIBSVM](http://www.csie.ntu.edu.tw/~cjlin/libsvm/) and scikit-learn for SVM, and some more models from scikit-learn.
 
 ![CoreML supported model formats]({attach}static/images/coreml-formats.png)
 
@@ -291,16 +290,16 @@ it is a library for deploying deep learning models to mobile devices with suppor
 within the IT landscape of the organization. For example, a rules engine may call out to a feature service to fetch the
 variables and then call Clipper for inference. Clipper's is similar to Tensorflow Serving:
 
-* Have the same purpose.
-* Both offer model versioning.
+* Both serve the same purpose.
+* Both support model versioning.
 * Both written in C++.
 * Both offer containerized deployments with Docker.
 
 with some differences:
 
-* TF Serving only serves TF models by default, other models need custom support. Clipper supports Python functions,
-  R models, PySpark models and users can add custom support for other models as well.
-* Clipper exposes REST API while TF Serving has gRPC. That matters if there are strict requirements for low latency,
+* TF Serving only handles TF models by default, other models need custom support. Clipper supports Python functions,
+  R models, PySpark models, and users can add custom support for other models as well.
+* Clipper exposes REST API while TF Serving uses gRPC. That matters if there are strict requirements for low latency,
   in this case gRPC will likely
   [perform](https://blog.gopheracademy.com/advent-2015/etcd-distributed-key-value-store-with-grpc-http2/)
   [better](https://cloud.google.com/blog/big-data/2016/03/announcing-grpc-alpha-for-google-cloud-pubsub).
@@ -363,7 +362,7 @@ website features a list of [supported products and models](http://dmg.org/pmml/p
 PMML has third-party support, most often implemented by Openscoring.io, for many opensource machine and deep learning
 libraries. It is sometimes referred to as the "de facto standard" for model interoperability.
 That being said, Apple in their CoreML went for a custom model exchange format, Facebook and Microsoft teamed up
-to create ONNX; the position of PMML in the area of deep learning is not as strong. XML is no longer the engineers'
+to create ONNX; the position of PMML in the area of deep learning is not as strong. And XML is no longer the engineers'
 favourite format for exchanging data.
 
 ### Portable Format for Analytics (PFA)
@@ -379,7 +378,8 @@ of adoption. Even without a good model interchange format, there's usually a way
 wrapping it in a custom web service or using a product like Tensorflow Serving or Clipper.
 
 Mobile devices can access such a model using the client-server type of communication. Alternatively, a model can be
-transpired into one of the languages supported by the mobile platform.
+transpired into one of the languages supported by the mobile platform. CoreML supports some machine learning libraries
+and allows the trained models to be used for inference on mobile devices.
 
 The world of deep learning is changing fast, just over the last few months a number of new and promising projects
 were announced, including ONNX and NNVM. It is interesting to see if ONNX and NNVM will be widely accepted by the
