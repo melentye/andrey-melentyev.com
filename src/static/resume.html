@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="author" />
     <meta name="date" content="2017-10-07 10:43" />
-    <meta name="modified" content="2017-10-07 10:43" />
+    <meta name="modified" content="2017-10-19 21:34" />
     <meta name="summary" content="Andrey Melentyev - Resume" />
     <link rel="stylesheet" href="resume.css" />
 </head>
@@ -21,7 +21,7 @@
             <a href="mailto:andrey.melentyev@gmail.com">andrey.melentyev@gmail.com</a><br>
         </address>
     </header>
-    <main>
+    <main id="content">
         <!-- EXPERIENCE -->
         <section id="experience">
             <h1>Experience</h1>
@@ -30,19 +30,17 @@
                     <h1>Senior Software Engineer, Klarna</h1>
                     <span class="period"><time datetime="2015-05">May 2015</time> &ndash; <time>to date</time></span>
                 </header>
-                <p>Build and support near-realtime fraud detection and credit assessment systems.</p> 
+                <p>Build and support near real-time fraud detection and credit assessment systems serving thousands of requests per second.</p> 
                 <ul>
-                    <li>Helped break down a monolithic data-intensive <em>Spring</em> app backed by <em>Postgres</em> 
-                        built according to the <em>Lambda architecture</em> into a number of microservices following <em>Kappa architecture</em>
+                    <li>Refactored a monolithic data-intensive Spring app backed by Postgres into a number of microservices
                         improving maintainability and scalability.</li>
-                    <li>Learned to appreciate <em>infrastructure as code</em>, <em>continuous delivery pipelines</em> and <em>containers</em>, 
+                    <li>Learned to appreciate infrastructure as code, continuous delivery pipelines and containers, 
                         adopted <q>you build it, you run it</q> attitude.</li>
-                    <li>Became familiar with <em>AWS</em>, worked with <em>EC2, S3, RDS, CloudFormation</em> and other products.</li>
-                    <li>Built <em>feature extraction pipelines</em> for machine learning models using <em>Hive</em> and some non-trivial SQL.
-                        Facilitated migration to the new pipelines, enabling code reuse between analysis and live predictions.</li>
-                    <li>Together with two colleagues prepared and gave a talk on <em>gender diversity</em> in the engineering department of the company.</li>
-                    <li>About to finish a fraud detection system looking for connected components in a stream of data using 
-                        <em>Akka</em>, <em>Kafka</em> and <em>Redis</em>.</li>
+                    <li>Became familiar with AWS, worked with EC2, S3, RDS, CloudFormation and other cloud products.</li>
+                    <li>Built feature extraction pipelines for machine learning models using Hive enabling code reuse between model training and inference.</li>
+                    <li>Together with two colleagues prepared and gave a talk on gender diversity in the engineering department of the company.</li>
+                    <li>About to finish a fraud detection system labelling connected components in a stream of data using 
+                        Akka, Kafka and Redis.</li>
                 </ul>
             </article>
             <article>
@@ -53,12 +51,12 @@
                         <h1>Deutsche Bank London Asset Services</h1>
                         <span class="period"><time datetime="2011-05">May 2011</time> &ndash; <time datetime="2014-06">June 2014</time></span>
                     </header>
-                    <p>Event Repository&mdash;a reference data service, the golden source of <em>Corporate Action events</em>
-                        for the bank.</p> 
+                    <p>Event Repository&mdash;a reference data service, the golden source of Corporate Action events for the bank.</p> 
                     <ul>
-                        <li>Modern (at the time) <em>Java EE</em> stack, <em>message-driven architecture</em> with SWIFT and XML messages
+                        <li>Assumed the system architect role, was the go-to person for system design and cross-system integration.</li>
+                        <li>Modern (at the time) Java EE stack, Oracle RDBMS, Weblogic, message-driven architecture with SWIFT and XML messages
                         passed over MQs.</li>
-                        <li>The system was a part of the SOA landscape, exposing <em>SOAP over JMS</em> endpoint using <em>CXF</em>.</li>
+                        <li>The system was a part of the SOA landscape, exposing SOAP over JMS endpoint using Apache CXF.</li>
                     </ul>
                 </section>
                 <section class="project">
@@ -68,8 +66,9 @@
                     </header>
                     <p>eCare/TIBET&mdash;a mobile phone customer self-service portal and order management system.</p> 
                     <ul>
-                        <li>Gained hands-on <em>Java</em> knowledge, learned a lot about <em>J2EE</em>, <em>Spring Framework</em>, Weblogic and web applications in general.</li>
-                        <li>First exposure to a mature <em>service-oriented architecture</em>, both providing and consuming <em>SOAP over HTTP web services</em>.</li>
+                        <li>Gained hands-on Java knowledge, learned a lot about J2EE, Spring Framework, Weblogic and web applications in general.</li>
+                        <li>First exposure to a mature service-oriented architecture, both providing and consuming SOAP over HTTP web services.</li>
+                        <li>Joined as a trainee and by the end of the assignment was able to mentor newcomers and gave talks on the system landscape.</li>
                     </ul>
                 </section>
             </article>
@@ -89,7 +88,7 @@
                 <li>Distributed systems: know when to apply the CAP theorem.</li>
                 <li>Stream processing: Kafka, Kafka Streams, Apache Flink, Akka Streams.</li>
                 <li>Databases: Postgres, RocksDB, Redis.</li>
-                <li>Familiar with the Hadoop ecosystem: HDFS, Hive, Oozie and Spark.</li>
+                <li>Familiar with the Hadoop ecosystem: MapReduce, Hive, Oozie and Spark.</li>
                 <li>Infrastructure: AWS, Docker, infrastructure as code.</li>
                 <li>Methodologies: Scrum, Kanban, KISS, continuous integration and delivery.</li>
                 <li>Dabble in machine learning.</li>

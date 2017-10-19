@@ -1,3 +1,24 @@
 #contact {
     text-align: right;
 }
+
+header#contact h1 {
+    margin-bottom: 0.2em;
+}
+
+ul {
+    padding-left: 0;   
+}
+
+ul li {
+    list-style-position: inside;
+}
+
+a:link, a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    text-decoration: underline;
+}
