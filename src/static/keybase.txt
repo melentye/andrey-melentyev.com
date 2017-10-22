@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/melentye
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://www.andrey-melentyev.com
+  * I am melentye (https://keybase.io/melentye) on keybase.
+  * I have a public key ASBQ1OVWQdn6eW_K1Djpl5YtQnsSoPCNOsblqDPaSd07lAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "012050d4e55641d9fa796fcad438e997962d427b12a0f08d3ac6e5a833da49dd3b940a",
+      "host": "keybase.io",
+      "kid": "012050d4e55641d9fa796fcad438e997962d427b12a0f08d3ac6e5a833da49dd3b940a",
+      "uid": "ac723fd60c2ae7903f85de1980c47519",
+      "username": "melentye"
+    },
+    "merkle_root": {
+      "ctime": 1508676022,
+      "hash": "64653977d5ad6f928d039e7d8a2b3233deca0707395419b9d49a8e667780b613c545090f7a8539e336ec589df026d89caf52db4dbe69353093d8b8cc4c08afcf",
+      "hash_meta": "4d083e1a148a70a1de804141d66da0c306bd7f04fa2e2d92b8c967b908ae8f73",
+      "seqno": 1614742
+    },
+    "service": {
+      "hostname": "www.andrey-melentyev.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.33"
+  },
+  "ctime": 1508676178,
+  "expire_in": 504576000,
+  "prev": "30720dd10a489ecea53b9356e9ccd578dd230a2de35aa34a85a46e31f9796745",
+  "seqno": 4,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgUNTlVkHZ+nlvytQ46ZeWLUJ7EqDwjTrG5agz2kndO5QKp3BheWxvYWTFA1B7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwNTBkNGU1NTY0MWQ5ZmE3OTZmY2FkNDM4ZTk5Nzk2MmQ0MjdiMTJhMGYwOGQzYWM2ZTVhODMzZGE0OWRkM2I5NDBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwNTBkNGU1NTY0MWQ5ZmE3OTZmY2FkNDM4ZTk5Nzk2MmQ0MjdiMTJhMGYwOGQzYWM2ZTVhODMzZGE0OWRkM2I5NDBhIiwidWlkIjoiYWM3MjNmZDYwYzJhZTc5MDNmODVkZTE5ODBjNDc1MTkiLCJ1c2VybmFtZSI6Im1lbGVudHllIn0sIm1lcmtsZV9yb290Ijp7ImN0aW1lIjoxNTA4Njc2MDIyLCJoYXNoIjoiNjQ2NTM5NzdkNWFkNmY5MjhkMDM5ZTdkOGEyYjMyMzNkZWNhMDcwNzM5NTQxOWI5ZDQ5YThlNjY3NzgwYjYxM2M1NDUwOTBmN2E4NTM5ZTMzNmVjNTg5ZGYwMjZkODljYWY1MmRiNGRiZTY5MzUzMDkzZDhiOGNjNGMwOGFmY2YiLCJoYXNoX21ldGEiOiI0ZDA4M2UxYTE0OGE3MGExZGU4MDQxNDFkNjZkYTBjMzA2YmQ3ZjA0ZmEyZTJkOTJiOGM5NjdiOTA4YWU4ZjczIiwic2Vxbm8iOjE2MTQ3NDJ9LCJzZXJ2aWNlIjp7Imhvc3RuYW1lIjoid3d3LmFuZHJleS1tZWxlbnR5ZXYuY29tIiwicHJvdG9jb2wiOiJodHRwczoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMzMifSwiY3RpbWUiOjE1MDg2NzYxNzgsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJwcmV2IjoiMzA3MjBkZDEwYTQ4OWVjZWE1M2I5MzU2ZTljY2Q1NzhkZDIzMGEyZGUzNWFhMzRhODVhNDZlMzFmOTc5Njc0NSIsInNlcW5vIjo0LCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQAUBJeKk2p/3E9tJ/XM2Jt3aOG/zM2x/g84Qbw/d6aHq7iQ/4256NBnoPjrNFWmO8lYGwIqGuASuIg5n3HxpMgCoc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCBunt+lm6DTRxNxzWU1ORLJW53N4YWJQnsgXrBh4aDpvqN0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/melentye
+
+==================================================================
