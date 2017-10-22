@@ -1,6 +1,6 @@
 Title: Model interoperability
 Tags: machine learning, interoperability, keras, xgboost, sklearn, lightgbm, catboost, spark, theano, tensorflow, pytorth, dl4j, coreml, nnvm, onnx, pmml
-Modified: 2017-10-14 17:54
+Modified: 2017-10-22 18:13
 Summary: How the trained models can be persisted and reused across libraries and environments.
 
 The post will describe how the **trained models** can be persisted and reused across machine learning **libraries**
@@ -79,6 +79,9 @@ by Microsoft. Just like XGBoost, its core is written in C++ with APIs in R and P
 [in R](https://github.com/Microsoft/LightGBM/blob/master/R-package/demo/basic_walkthrough.R) and
 [Python](https://github.com/Microsoft/LightGBM/blob/master/tests/python_package_test/test_basic.py) show how to save and
 load models into the LightGBM internal format.
+
+The library's command-line interface can be used to [convert](https://github.com/Microsoft/LightGBM/blob/master/docs/Parameters.rst#convert-model-parameters)
+models to C++.
 
 LightGBM models can be converted to [PMML]({filename}/2017-10-14_model-interoperability.md#predictive-model-markup-language-pmml)
 using [jpmml-lightgbm](https://github.com/jpmml/jpmml-lightgbm) by Openscoring.io.
