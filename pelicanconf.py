@@ -10,7 +10,7 @@ GITHUB_URL = 'https://github.com/melentye/andrey-melentyev.com'
 
 TIMEZONE = 'Europe/Stockholm'
 DEFAULT_LANG = 'en'
-DEFAULT_DATE_FORMAT = '%Y-%m-%d'
+DEFAULT_DATE_FORMAT = '%d %B %Y'
 DEFAULT_CATEGORY = 'misc'
 
 PATH = 'src'
