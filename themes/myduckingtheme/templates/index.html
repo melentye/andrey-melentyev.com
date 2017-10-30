@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% block head %}
+{{ super() }}
+  <meta name="description" content="{{ SITESUBTITLE }}" />
+{% endblock %}
 {% block content %}
   <main>
     <ol id="post-list">
