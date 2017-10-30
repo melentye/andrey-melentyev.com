@@ -1,5 +1,7 @@
 # Machine Learning Engineering
 
+[![Build Status](https://travis-ci.org/melentye/andrey-melentyev.com.svg?branch=master)](https://travis-ci.org/melentye/andrey-melentyev.com)
+
 A blog about software engineering in the area of machine learning, written by an engineer.
 
 Published as [www.andrey-melentyev.com](https://www.andrey-melentyev.com)
