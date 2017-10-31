@@ -2,7 +2,7 @@ Title: Moving to Stockholm
 Modified: 2017-10-30 22:40
 Status: draft
 Tags: expat, sweden, stockholm
-Summary: Some observations on my move to Stockholm, Sweden
+Summary: Some observations on my move to Stockholm, Sweden.
 
 # Being an expat in Stockholm, Sweden
 

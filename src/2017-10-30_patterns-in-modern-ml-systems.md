@@ -2,12 +2,12 @@ Title: Patterns in modern ML systems
 Tags: machine learning, deployment, monitoring, infrastructure, google, uber, klarna
 Modified: 2017-10-30 15:57
 Status: draft
-Summary: Analysis of modern machine learning deployments by Google, Uber and Klarna
+Summary: Analysis of modern machine learning deployments by Google, Uber and Klarna.
 
 ## Main parts
 
 * Data ingestion. Data quality issues can be caused for a number of reasons, including but not limited to code defects, human error or system failures. When it comes to data quality, Spotify Engineering shares their experience in [Data Quality By Engineers, For Engineers]((https://labs.spotify.com/2017/10/17/tc4d-data-quality-by-engineers-for-engineers/) blog post.
-* Data analysis. Have a good pre-defined set of statistics calculate for different types of features. Allow defining custom statistics.
+* Data analysis. Have a good pre-defined set of statistics calculate for different types of features. Allow defining custom statistics. Visualization matters - https://blog.acolyer.org/2017/10/31/same-stats-different-graphs-generating-datasets-with-varied-appearance-and-identical-statistics-through-simulated-annealing/ 
 * Data transformation, aka feature extraction. Feature-to-integer mapping, etc. Important to have the same logic in training and serving time, for example to package it in the trained model.
 * Data validation. Use schema to verify that feature matches the necessary data type, fits into min-max values interval or is from a pre-defined set. Provide actionably options to the user: exclude feature, update schema. Can include more specific requirements like a distribution of values. Make sure feature is present in a certain fraction of examples (or in all of them if mandatory). Integrate data validation with bug tracking so that data defects can be treated accordingly.
 * Training. Performance improvements: warm start. Usability: high level Feature and Estimator API.
