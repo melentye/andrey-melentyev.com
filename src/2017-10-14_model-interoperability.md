@@ -64,7 +64,11 @@ and is offered via a pair of methods, there are examples
 Because the model persistence logic is delegated to the library core, an XGB model trained in R or Python can then be exported
 and loaded into an XGB inference module written in a different, possibly more performant language such as C++:
 
-![XGBoost language interoperability]({attach}static/images/xgboost-languages.png)
+<figure>
+  <img src="{attach}static/images/xgboost-languages.png" alt="XGBoost language interoperability"/>
+  <figcaption>Figure 1. A data scientist trains the model using XGB R API and saves it in the XGB internal format.
+  A model is later imported using XGB C++ API and used in a C++ desktop application.</figcaption>
+</figure>
 
 XGBoost models can be converted to [Apple CoreML]({filename}/2017-10-14_model-interoperability.md#apple-coreml)
 using [coremltools](https://github.com/apple/coremltools).
@@ -207,7 +211,11 @@ a thin web service on top of Rserve is known to work well in practice, web servi
 containerized. A REST interface for the model is then exposed from the web service which can be implemented in Java,
 C, C++ or another language supporting Rserve.
 
-![Exposing R model with Rserve]({attach}static/images/rserve-deployment.png)
+<figure>
+  <img src="{attach}static/images/rserve-deployment.png" alt="Exposing R model with Rserve"/>
+  <figcaption>Figure 2. Arbitrary R model is deployed as a web-service. Rserve is used access R code from the web
+  service application.</figcaption>
+</figure>
 
 Library-specific save/load feature should normally be preferred since the serialized R object might not have all
 the necessary data or may have some extra data that is not necessary for storing a trained model.
@@ -223,7 +231,10 @@ Pickled models can be easily served by a Python-based web app.
 Here's a [guide on how to do it with Flask](https://medium.com/towards-data-science/a-flask-api-for-serving-scikit-learn-models-c8bcdaa41daa),
 a lightweight web application framework for Python.
 
-![Exposing sklearn model with Flask]({attach}static/images/sklearn-flask-deployment.png)
+<figure>
+  <img src="{attach}static/images/sklearn-flask-deployment.png" alt="Exposing sklearn model with Flask"/>
+  <figcaption>Figure 3. Arbitrary Python model is deployed as a web-service implemented with Flask.</figcaption>
+</figure>
 
 Note that pickling might not be a suitable approach for long-term model storage, due to the fact that it doesn't store
 classes, only their instances. Therefore it may not be possible to deserialize a model trained by an older version of
@@ -243,13 +254,14 @@ Tensorflow Serving is not limited to Tensorflow models and can be tailored to ex
 providing nice abstractions around it. Such a custom model needs to have a wrapper written in C++ called
 [Servable](https://www.tensorflow.org/serving/custom_servable).
 It is a viable alternative for production deployments of any machine learning models, especially if your organization
-is service-oriented and has experience integrating gRPC endpoints. A possible usage scenario could be a low latency
-deployment of a trained XGB model where Tensorflow Serving uses a custom servable:
+is service-oriented and has experience integrating gRPC endpoints.
 
-![Tensorflow Serving XGB model]({attach}static/images/xgb-tf-serving.png)
-
-In the figure above, XGBoost Servable is something that the developer will have to come up with - Tensorflow Serving
-allows having custom servables and XGBoost offers a C++ API but in practice this hasn't been done yet.
+<figure>
+  <img src="{attach}static/images/xgb-tf-serving.png" alt="Tensorflow Serving XGB model"/>
+  <figcaption>Figure 4. A possible low-latency deployment scenario of a trained XGB model where Tensorflow Serving uses
+  a custom servable. XGBoost Servable is something that the developer will have to come up with - Tensorflow Serving
+allows having custom servables and XGBoost offers a C++ API but in practice this hasn't been done yet.</figcaption>
+</figure>
 
 ### Apple CoreML
 
@@ -267,7 +279,10 @@ by CoreML conversion tool ML libraries. The following libraries are supported: C
 (only outdated major versions at the time of announcement), scikit-learn and XGBoost for tree ensembles,
 [LIBSVM](http://www.csie.ntu.edu.tw/~cjlin/libsvm/) and scikit-learn for SVM, and some more models from scikit-learn.
 
-![CoreML supported model formats]({attach}static/images/coreml-formats.png)
+<figure>
+  <img src="{attach}static/images/coreml-formats.png" alt="CoreML supported model formats"/>
+  <figcaption>Figure 5. An overview of formats supported by Apple CoreML.</figcaption>
+</figure>
 
 There's a page explaining
 [how to convert a model into the CoreML format](https://developer.apple.com/documentation/coreml/converting_trained_models_to_core_ml)
@@ -324,7 +339,10 @@ Intermediate Representation for CPUs, CUDA and other for GPUs). The process cons
 NNVM is still in early stages and currently supports MXNet and CoreML models. Caffe and Keras are supported indirectly
 via conversion to CoreML and explicit support for Keras is planned.
 
-![NNVM supported libraries and targets]({attach}static/images/nnvm-formats.png)
+<figure>
+  <img src="{attach}static/images/nnvm-formats.png" alt="NNVM supported libraries and targets"/>
+  <figcaption>Figure 6. An overview of frontend and backend formats supported by NNVM+TVM.</figcaption>
+</figure>
 
 Note that in the referenced above announcement, a special terminology is employed where the ML library used for
 modelling is referred to as the *frontend* and the piece that will execute the model is called the *backend*. However
