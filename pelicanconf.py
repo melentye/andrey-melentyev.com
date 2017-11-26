@@ -49,7 +49,8 @@ MARKUP = ('md', 'ipynb')
 MARKDOWN = {
     'extension_configs': {
         'markdown.extensions.codehilite': {},
-        'markdown.extensions.toc': {}
+        'markdown.extensions.toc': {},
+        'markdown.extensions.tables':{},
     }
 }
 
