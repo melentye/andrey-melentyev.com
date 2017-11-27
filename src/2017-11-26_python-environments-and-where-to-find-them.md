@@ -1,14 +1,12 @@
 Title: Python environments and where to find them
 Tags: python
-Modified: 2017-11-26 23:39
-Status: draft
+Modified: 2017-11-27 23:08
 Summary: Taking care of Python environments can be hard and the variety of tools overwhelming. But it doesn't have to be!
 
 Books, tutorials and online courses often make suggestions on how to set up a Python environment. Some recommend using
-[conda](https://conda.io/docs/), some [virtualenv](https://virtualenv.pypa.io/en/stable/) or
-[pyenv](https://github.com/pyenv/pyenv). Which one to choose? Is the system Python installation that most of the modern
-operating systems have useless? The post unravels the mystery neat Python environments and teaches us to take care of
-them.
+[Conda](https://conda.io/docs/), some [virtualenv](https://virtualenv.pypa.io/en/stable/) or
+[pyenv](https://github.com/pyenv/pyenv). Which one to choose? Why not use the system Python installation that most of
+the modern operating systems have? The post explains how to create a friendly environment for Python.
 
 One way to introduce some structure into the variety of the Python environment management tools is
 to categorize them by the use case they are trying to solve:
@@ -70,7 +68,7 @@ Sample usage:
 
 after running the above, Pelican is installed in a virtual environment named "pelican" in the directory
 `$HOME/virtualenvs/pelican`, leaving my other Python installations unchanged. A nice side effect of using virtualenv
-is that super-user priveleges are no longer required in order to install packages. This is not a unique feature of
+is that super-user privileges are no longer required in order to install packages. This is not a unique feature of
 virtualenv, we will get that for free with any of the other tools below.
 
 To create an environment with a specific Python version (which has to be installed first), use the `-p` argument:
@@ -136,7 +134,7 @@ Conda packages are hosted on [Conda Forge](https://conda-forge.org/). In my expe
 slightly outdated versions of some Python packages in comparison to PyPI, but it could also be a sampling error. That
 is compensated by Conda's ability to install packages with pip.
 
-An alternative to pip's `requirements.txt` file in Conda is `environment.yml` file:
+An alternative to pip's `requirements.txt` file in Conda is the `environment.yml` file:
 
     :::yaml
     name: my-env
@@ -198,7 +196,7 @@ libraries and environments and with useful tools like
 [Jupyter notebook](https://jupyter-notebook.readthedocs.io/en/stable/) and
 [Spyder IDE](https://pythonhosted.org/spyder/).
 
-Anaconda allows installing different Python versions. For package management and virtual environments Anaconda uses Conda.
+Anaconda uses Conda to manage Python versions, virtual environments and to install packages.
 
 Note that if you use the graphical installer, it will update your `$HOME/.bash_profile` and prepend Anaconda
 directory to your `PATH` (which you can of course later revert back if that's undesired). Installing with `brew cask`
@@ -213,7 +211,7 @@ can be installed as Python packages but not CUDA.
 
 What about CUDA? Well, one way to solve it is to package CUDA Toolkit
 and supporting libraries in a Docker image, which is exactly what [nvidia/cuda](https://hub.docker.com/r/nvidia/cuda/)
-is about. And then build another Docker image on top of that, installing your favorite flavor of Python and
+is about. And then build another Docker image on top of that, installing your favourite flavour of Python and
 package management tools:
 
     :::Dockerfile
@@ -240,9 +238,8 @@ package management tools:
 For the resulting image to actually work with CUDA, it needs to be ran using
 [nvidia-docker](https://github.com/NVIDIA/nvidia-docker).
 
-For improved reproducibility it also makes sense to pin the versions of the software packages installed in the Docker
-image. CUDA driver is on the host OS, outside of the Docker container and therfore it's version needs to be managed
-separately.
+For improved reproducibility, it also makes sense to pin the versions of the software packages installed in the Docker
+image. CUDA driver is on the host OS, outside of the Docker container and it's version needs to be managed separately.
 
 The combination of nvidia-docker and cloud infrastructure as code deserves a dedicated article, the takeaway
 for this post is that Docker images can be used to fix an environment with a specific Python version and dependencies
@@ -278,8 +275,8 @@ It's a start, but where does this version come from? [which](https://tldr.ostera
     /Users/andrey.melentyev/.pyenv/shims/python
     /usr/bin/python
 
-the first line of the output is the full path to the executable that will be ran when I type `python` in the command
-line. The subsequent lines are some other `python` executables that are shadowed by the first one. In this case we
+the first line of the output is the full path to the executable that will be run when I type `python` into the command
+line. The subsequent lines are some other `python` executables that are shadowed by the first one. In this case, we
 notice that pyenv-managed Python is at the top. We can query pyenv to find out more:
 
     $ pyenv version
@@ -330,24 +327,27 @@ this may not be the best choice but at least it is a clean slate!
 
 As it happens with software, *it depends*:
 
-* If you do a lot of data science / machine learning type of projects and not that much other Python development,
+* If you do a lot of data science, machine learning type of projects and not that much other Python development,
   Anaconda can be a good start. It has most of the things out of the box and doesn't require learning a new
   command-line tool (while still offering one).
-* If you have Python projects with different requirements for Python and packages, go for Conda or pyenv.
+* If you have Python projects with different requirements for Python and packages, consider using Conda or pyenv.
 * Finally, if you don't program Python, I'm surprised you've made it this far!
 
 It is easier to say which tools not to use together:
 
-* If you decided to use Conda, using virtualenv is unnecessary and will only introduce confusion. Conda manages virual
+* If you decided to use Conda, using virtualenv is unnecessary and will only introduce confusion. Conda manages virtual
   environments for you already.
 * Even though pyenv supports Miniconda and Anaconda and pyenv-virtualenv can handle Conda environments, the benefits
-  of such symbios may not outweight the additional complexity of indirection. I would recommend having only one tool.
+  may not outweigh the additional complexity. I would recommend having only one tool.
 
 ## What is the system Python good for
 
 Gosh, I really don't know... on macOS High Sierra in 2017 it's still Python 2.7, same applies to large Linux
 distributives like CentOS or Debian. I'd recommend leaving it alone and using a sane Python version with Conda or pyenv
 for development.
+
+Some exceptions are Amazon Linux 2017.09.1 having Python 3.6 and AWS Deep Learning AMIs which does a decent job keeping
+Python and packages up-to-date.
 
 ## Environment management tools for other languages
 
