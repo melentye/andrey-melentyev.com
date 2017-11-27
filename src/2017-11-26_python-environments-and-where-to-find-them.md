@@ -62,9 +62,16 @@ Sample usage:
 
     $ pip install pelican
 
-after running the above, Pelican is installed in a virtual environment in `$HOME/virtualenvs/pelican`, leaving my
-other Python installations unchanged. A nice side effect of using virtualenv like this is that super-user priveleges
-are no longer required in order to install packages.
+after running the above, Pelican is installed in a virtual environment named "pelican" in the directory
+`$HOME/virtualenvs/pelican`, leaving my other Python installations unchanged. A nice side effect of using virtualenv
+like this is that super-user priveleges are no longer required in order to install packages.
+
+To create a virtual environment with a specific Python version, use the `-p` argument:
+
+    virtualenv -p /usr/local/bin/python3 ~/virtualenvs/yourenv
+
+Virtual environments can be stored anywhere, one approach could be to store them in the `~/virtualenvs`, another
+would be to put them in the directory of the projects where they are used.
 
 ### pyenv
 
@@ -138,7 +145,7 @@ is another option and then the `PATH` variable is not updated.
 ### Docker
 
 Docker doesn't really belong in the list of Python environment management tools but it comes in handy to enable
-reproducibility when not just Python packages play a role in the environment. An example could be a deep learning
+reproducibility when it's not just Python packages play a role in the environment. An example could be a deep learning
 setup where Keras uses Tensorflow which runs so much faster with GPU acceleration with CUDA. Keras and Tensorflow
 can be installed as Python packages but not CUDA.
 
