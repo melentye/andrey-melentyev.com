@@ -19,6 +19,10 @@ to categorize them by the use case they are trying to solve:
 * Maintaining isolated Python environments, each environment having their own set of packages and allowing to use
   different versions of libraries in different projects.
 
+The post walks through some of the popular tools realizing the above use cases.
+
+[TOC]
+
 ### pip
 
 [PyPA](https://www.pypa.io/en/latest/) is the Python Packaging Authority,
@@ -36,6 +40,8 @@ control system allowing multiple developers to keep their package versions in sy
     pandas==0.21.0
     scipy==1.0.0
     seaborn==0.8.1
+
+pip is extremely popular and nearly all major Python libraries and frameworks are published to PyPI.
 
 ### virtualenv
 
@@ -64,14 +70,15 @@ Sample usage:
 
 after running the above, Pelican is installed in a virtual environment named "pelican" in the directory
 `$HOME/virtualenvs/pelican`, leaving my other Python installations unchanged. A nice side effect of using virtualenv
-like this is that super-user priveleges are no longer required in order to install packages.
+is that super-user priveleges are no longer required in order to install packages. This is not a unique feature of
+virtualenv, we will get that for free with any of the other tools below.
 
-To create a virtual environment with a specific Python version, use the `-p` argument:
+To create an environment with a specific Python version (which has to be installed first), use the `-p` argument:
 
     virtualenv -p /usr/local/bin/python3 ~/virtualenvs/yourenv
 
-Virtual environments can be stored anywhere, one approach could be to store them in the `~/virtualenvs`, another
-would be to put them in the directory of the projects where they are used.
+Virtual environments can be stored anywhere, one approach is to store them in the `~/virtualenvs`, another
+is to put the environment in the same directory as the project that uses it.
 
 ### pyenv
 
@@ -80,20 +87,43 @@ would be to put them in the directory of the projects where they are used.
 
 pyenv supports both Python 2.7.x and 3.x.
 [Miniconda]({filename}/2017-11-26_python-environments-and-where-to-find-them.md#Miniconda) can be treated as yet
-another Python version: it can be installed via pyenv with `pyenv install miniconda3-4.3.27` and then activated as
+another Python version: it can be installed via pyenv with `pyenv install miniconda3-latest` and then activated as
 usual. Same goes for [Anaconda]({filename}/2017-11-26_python-environments-and-where-to-find-them.md#Anaconda).
 
-pyenv enables switching between Python versions by using `PYENV_VERSION` environment variable or other means such as
-placing a `.python-version` file in a project directory.
+Usage:
 
-#### pyenv-virtualenv
+    $ pyenv install 3.6.0
+    Downloading Python-3.6.0.tar.xz...
+    -> https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
+    Installing Python-3.6.0...
+    Installed Python-3.6.0 to /Users/andrey.melentyev/.pyenv/versions/3.6.0
+
+If you get "ERROR: The Python ssl extension was not compiled. Missing the OpenSSL lib?" under macOS, see
+[Github issue](https://github.com/pyenv/pyenv/issues/950#issuecomment-333114076).
+
+    $ pyenv versions
+    system
+    2.7.10
+    3.5.1
+    * 3.5.2 (set by /Users/andrey.melentyev/.pyenv/version)
+    3.6.0
+    3.6.3
+    3.6.3/envs/moto
+
+pyenv enables switching between Python versions by using `PYENV_VERSION` environment variable or other means such as
+placing a `.python-version` file in a project directory:
+
+    $ PYENV_VERSION=3.6.0 python --version
+    Python 3.6.0
+
+### pyenv-virtualenv
 
 > [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) is a pyenv plugin that provides features to manage
 > virtualenvs and conda environments for Python on UNIX-like systems.
 
-Like pyenv allows installing Python versions, including Miniconda and Anaconda, pyenv-virtualenv helps manage virtual
-environments within Python versions. For a "vanilla" Python distributions, virtualenv will be used, for Miniconda and
-Anaconda, pyenv-virtualenv delegates to Conda for environment management.
+Like pyenv allows installing Python versions, pyenv-virtualenv helps manage virtual environments within Python
+versions. For a "vanilla" Python distribution, virtualenv will be used, for Miniconda and Anaconda,
+pyenv-virtualenv delegates to Conda.
 
 Note that you don't need pyenv-virtualenv to use pyenv and virtualenv together, the plugin just makes it easier.
 
@@ -120,13 +150,45 @@ An alternative to pip's `requirements.txt` file in Conda is `environment.yml` fi
 in the example above, numpy and pandas will be installed from Conda Forge while matplotlib and seaborn will be fetched
 by pip from PyPI.
 
-Conda doesn't manage Python versions, meaning that you can't say "Hey, Conda, install me fresh Python". Conda
-itself is distributed with a Python installation: as a part of Miniconda or Anaconda.
+Conda treats Python as any other package, so it's possible to create an environment with an arbitrary Python version:
+
+    $ conda create --name my-friends-env --yes --quiet python=2.7.14
+
+    Package plan for installation in environment /Users/andrey.melentyev/anaconda3/envs/my-friends-env:
+
+    The following NEW packages will be INSTALLED:
+
+        ca-certificates: 2017.08.26-ha1e5d58_0
+        certifi:         2017.11.5-py27hfa9a1c4_0
+        libcxx:          4.0.1-h579ed51_0
+        libcxxabi:       4.0.1-hebd6815_0
+        libedit:         3.1-hb4e282d_0
+        libffi:          3.2.1-h475c297_4
+        ncurses:         6.0-hd04f020_2
+        openssl:         1.0.2m-h86d3e6a_1
+        pip:             9.0.1-py27h1567d89_4
+        python:          2.7.14-h001abdc_23
+        readline:        7.0-hc1231fa_4
+        setuptools:      36.5.0-py27h2a45cec_0
+        sqlite:          3.20.1-h7e4c145_2
+        tk:              8.6.7-h35a86e2_3
+        wheel:           0.30.0-py27h677a027_1
+        zlib:            1.2.11-hf3cbc9b_2
+
+    $ source activate my-friends-env
+    $ which python
+    /Users/andrey.melentyev/anaconda3/envs/my-friends-env/bin/python
+    $ source activate my-friends-env
+    $ python --version
+    Python 2.7.14 :: Anaconda, Inc.
+
+AWS [has recently announced a new version of the AWS Deep Learning AMI](https://aws.amazon.com/blogs/ai/new-aws-deep-learning-amis-for-machine-learning-practitioners)
+where each deep learning framework resides in its own Conda environment. Neat!
 
 ### Miniconda
 
 As we briefly mentioned, [Miniconda](https://conda.io/docs/glossary.html#miniconda) is a Python distribution with Conda
-and some useful packages.
+and some useful packages. If you liked the movie "Inception", you might also want to install Miniconda using pyenv.
 
 ### Anaconda
 
@@ -175,34 +237,40 @@ package management tools:
     # A nicer Python REPL
     ENTRYPOINT ["ipython"]
 
-In order for the resulting image to actually work with CUDA, it needs to be ran using
-[nvidia-docker](https://github.com/NVIDIA/nvidia-docker). This `Dockerfile` is just an example, if it's reproducibility
-that we care about, it also makes sense to pin the versions of the installed software packages.
+For the resulting image to actually work with CUDA, it needs to be ran using
+[nvidia-docker](https://github.com/NVIDIA/nvidia-docker).
+
+For improved reproducibility it also makes sense to pin the versions of the software packages installed in the Docker
+image. CUDA driver is on the host OS, outside of the Docker container and therfore it's version needs to be managed
+separately.
+
+The combination of nvidia-docker and cloud infrastructure as code deserves a dedicated article, the takeaway
+for this post is that Docker images can be used to fix an environment with a specific Python version and dependencies
+as well as non-Python software packages.
 
 ## Putting it all together
 
 Tool             | Manage Python versions | Install Python packages | Manage Python virtual environments
 ---------------- |:----------------------:|:-----------------------:|:---------------------------------:
-pip              | No                     | Yes                     | No
-virtualenv       | No                     | No                      | Yes
-pyenv            | Yes                    | No                      | No
-pyenv-virtualenv | No                     | No                      | Yes
-Conda            | No                     | Yes                     | Yes
-Anaconda         | Yes                    | Yes                     | Yes
+pip              | No                     | **Yes**                 | No
+virtualenv       | No                     | No                      | **Yes**
+pyenv            | **Yes**                | No                      | No
+pyenv-virtualenv | No                     | No                      | **Yes**
+Conda            | **Yes**                | **Yes**                 | **Yes**
 
-## Practical advice
+From the table it becomes clear that there is more than one way to cover all three main use cases:
 
-### How to find out what is currently being used
+* Combination of pyenv, pyenv-virtualenv and pip.
+* Conda installed with Miniconda or Anaconda.
 
-To find out which version of Python is currently active, one can use `python --version`:
+## How to find out what is currently being used
+
+### Example 1 - pyenv
+
+To find out which version of Python is currently active, use `python --version`:
 
     $ python --version
-    Python 2.7.10
-
-alternatively, if I activate one of my other environments:
-
-    $ python --version
-    Python 3.6.2 :: Continuum Analytics, Inc.
+    Python 3.6.3
 
 It's a start, but where does this version come from? [which](https://tldr.ostera.io/which) command comes to the rescue:
 
@@ -215,29 +283,71 @@ line. The subsequent lines are some other `python` executables that are shadowed
 notice that pyenv-managed Python is at the top. We can query pyenv to find out more:
 
     $ pyenv version
-    some-env-name (set by PYENV_VERSION environment variable)
+    my-fresh-vanilla-python (set by PYENV_VERSION environment variable)
 
     $ echo $PYENV_VERSION
-    some-env-name
+    my-fresh-vanilla-python
 
     $ pyenv which python
-    /Users/andrey.melentyev/.pyenv/versions/some-env-name/bin/python
+    /Users/andrey.melentyev/.pyenv/versions/my-fresh-vanilla-python/bin/python
 
-### Which one to use
+### Example 2 - Anaconda
+
+Check out Python version
+
+    $ python --version
+    Python 3.6.3 :: Anaconda, Inc.
+
+Aha, it's an Anaconda. Where is it from?
+
+    $ which python
+    /Users/andrey.melentyev/anaconda3/bin/python
+
+What other Conda environments do I have?
+
+    $ conda env list
+    # conda environments:
+    #
+    my-friends-env           /Users/andrey.melentyev/anaconda3/envs/my-friends-env
+    root                  *  /Users/andrey.melentyev/anaconda3
+
+### Example 3 - system Python
+
+    $ python --version
+    Python 2.7.10
+
+    $ which python
+    /usr/bin/python
+
+this may not be the best choice but at least it is a clean slate!
+
+### Some other places to look for snakes
+
+* It's good to check your `$PATH` variable for Python-related things, just run `echo $PATH` and see if something pops up.
+* The source of the `$PATH` is most likely in the `$HOME/.bash_profile` file, it's a go-to place if some cleanup is required.
+
+## Which tool to use
 
 As it happens with software, *it depends*:
 
 * If you do a lot of data science / machine learning type of projects and not that much other Python development,
   Anaconda can be a good start. It has most of the things out of the box and doesn't require learning a new
-  command-line tool.
-* If you have Python projects with different requirements for Python and packages, go for pyenv or Conda.
+  command-line tool (while still offering one).
+* If you have Python projects with different requirements for Python and packages, go for Conda or pyenv.
 * Finally, if you don't program Python, I'm surprised you've made it this far!
 
-### What is the system Python good for
+It is easier to say which tools not to use together:
+
+* If you decided to use Conda, using virtualenv is unnecessary and will only introduce confusion. Conda manages virual
+  environments for you already.
+* Even though pyenv supports Miniconda and Anaconda and pyenv-virtualenv can handle Conda environments, the benefits
+  of such symbios may not outweight the additional complexity of indirection. I would recommend having only one tool.
+
+## What is the system Python good for
 
 Gosh, I really don't know... on macOS High Sierra in 2017 it's still Python 2.7, same applies to large Linux
-distributives like CentOS or Debian. I'd recommend leaving it alone and using a sane Python version with pyenv
-or Conda for development.
+distributives like CentOS or Debian. I'd recommend leaving it alone and using a sane Python version with Conda or pyenv
+for development.
 
 ## Environment management tools for other languages
 
