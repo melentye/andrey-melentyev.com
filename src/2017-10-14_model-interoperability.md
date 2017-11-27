@@ -1,6 +1,6 @@
 Title: Model interoperability
 Tags: machine learning, interoperability, keras, xgboost, sklearn, lightgbm, catboost, spark, theano, tensorflow, pytorth, dl4j, coreml, nnvm, onnx, pmml
-Modified: 2017-10-22 18:13
+Modified: 2017-11-27 10:30
 Summary: How the trained models can be persisted and reused across libraries and environments.
 
 The post will describe how the **trained models** can be persisted and reused across machine learning **libraries**
@@ -372,6 +372,7 @@ it is in the early stages. Support for PyTorch, Caffe2 and CNTK is planned.
 
 Soon after the initial announcement, IBM
 [joined the initiative](https://www.ibm.com/blogs/research/2017/10/open-standards-deep-learning-simplify-development-neural-networks/).
+*Update: [and AWS](https://aws.amazon.com/about-aws/whats-new/2017/11/announcing-onnx-support-for-apache-mxnet/)*
 
 ### Predictive Model Markup Language (PMML)
 
