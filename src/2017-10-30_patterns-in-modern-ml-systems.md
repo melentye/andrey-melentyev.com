@@ -34,3 +34,4 @@ Slicing is useful - can help detect both validation and evaluation issues which 
 
 1. [TFX: A TensorFlow-Based Production-Scale Machine Learning Platform](http://www.kdd.org/kdd2017/papers/view/tfx-a-tensorflow-based-production-scale-machine-learning-platform)
 1. [Meet Michelangelo: Uber’s Machine Learning Platform](https://eng.uber.com/michelangelo/)
+1. [Turbocharging Analytics at Uber with our Data Science Workbench](https://eng.uber.com/dsw/)
