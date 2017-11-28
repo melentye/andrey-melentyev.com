@@ -72,6 +72,7 @@ STATIC_PATHS = [
 # Control over the target location of the pages
 EXTRA_PATH_METADATA = {
     'static/yandex_44baf762e45a6938.html': {'path': 'yandex_44baf762e45a6938.html'},
+    'static/googlea786935fedb7c74d.html': {'path': 'googlea786935fedb7c74d.html'},
     'static/keybase.txt': {'path': 'keybase.txt'},
     'static/robots.txt': {'path': 'robots.txt'},
     'static/resume.html': {'path': 'resume.html'},
