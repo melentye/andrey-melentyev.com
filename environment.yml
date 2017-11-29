@@ -1,0 +1,8 @@
+name: my-website
+channels:
+  - conda-forge
+dependencies:
+  - awscli=1.11.120
+  - pelican=3.7.1
+  - markdown=2.6.9
+  - python=3.6.3
