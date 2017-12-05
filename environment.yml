@@ -6,3 +6,5 @@ dependencies:
   - pelican=3.7.1
   - markdown=2.6.9
   - python=3.6.3
+  - ipython=6.2.1
+  - nbconvert=5.3.1
