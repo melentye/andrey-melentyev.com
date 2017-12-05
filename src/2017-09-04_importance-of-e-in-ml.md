@@ -59,8 +59,8 @@ covers questions of testing monitoring ML production systems.
 
 One other place where software engineering practices are useful is the development of the **machine learning frameworks**,
 [Scikit-learn](http://scikit-learn.org/), [TensorFlow](https://www.tensorflow.org/), [Theano](http://deeplearning.net/software/theano/),
-[Keras](keras.io), [Gensim](https://radimrehurek.com/gensim/) just to name a few, all use version control systems,
-reproducible builds, and continuous integration pipelines with automated testing.
+[Keras](https://keras.io/), [Gensim](https://radimrehurek.com/gensim/) just to name a few, all use version control
+systems, reproducible builds, and continuous integration pipelines with automated testing.
 
 Another interesting topic is team organization, how does one structure the teams so that data scientists get the best of
 engineering? What is the best way to **collaborate**? What is the role of ML engineer?
