@@ -79,15 +79,17 @@ To create an environment with a specific Python version (which has to be install
 Virtual environments can be stored anywhere, one approach is to store them in the `~/virtualenvs`, another
 is to put the environment in the same directory as the project that uses it.
 
+Refer to the [Getting started](TODO: add link) for more information.
+
 ### pyenv
 
 > [pyenv](https://github.com/pyenv/pyenv) lets you easily switch between multiple versions of Python. It's simple,
 > unobtrusive, and follows the UNIX tradition of single-purpose tools that do one thing well.
 
 pyenv supports both Python 2.7.x and 3.x.
-[Miniconda]({filename}/2017-11-26_python-environments-and-where-to-find-them.md#Miniconda) can be treated as yet
+[Miniconda]({filename}/2017-11-26_python-environments-and-where-to-find-them.md#miniconda) can be treated as yet
 another Python version: it can be installed via pyenv with `pyenv install miniconda3-latest` and then activated as
-usual. Same goes for [Anaconda]({filename}/2017-11-26_python-environments-and-where-to-find-them.md#Anaconda).
+usual. Same goes for [Anaconda]({filename}/2017-11-26_python-environments-and-where-to-find-them.md#anaconda).
 
 Usage:
 
