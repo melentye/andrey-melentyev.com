@@ -1,6 +1,6 @@
 Title: Python environments and where to find them
 Tags: python
-Modified: 2017-11-27 23:08
+Modified: 2017-12-08 14:26
 Summary: Taking care of Python environments can be hard and the variety of tools overwhelming. But it doesn't have to be!
 
 Books, tutorials and online courses often make suggestions on how to set up a Python environment. Some recommend using
