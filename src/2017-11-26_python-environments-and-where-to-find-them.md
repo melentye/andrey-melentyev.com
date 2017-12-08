@@ -6,7 +6,7 @@ Summary: Taking care of Python environments can be hard and the variety of tools
 Books, tutorials and online courses often make suggestions on how to set up a Python environment. Some recommend using
 [Conda](https://conda.io/docs/), some [virtualenv](https://virtualenv.pypa.io/en/stable/) or
 [pyenv](https://github.com/pyenv/pyenv). Which one to choose? Why not use the system Python installation that most of
-the modern operating systems have? The post explains how to create a friendly environment for Python.
+the modern operating systems have?
 
 One way to introduce some structure into the variety of the Python environment management tools is
 to categorize them by the use case they are trying to solve:
@@ -17,7 +17,8 @@ to categorize them by the use case they are trying to solve:
 * Maintaining isolated Python environments, each environment having their own set of packages and allowing to use
   different versions of libraries in different projects.
 
-The post walks through some of the popular tools realizing the above use cases.
+The post walks through some of the popular tools that help create a friendly environment for your Python. The goal is not
+to go into the details of how to install and operate each tool but rather to explain when to use it.
 
 [TOC]
 
