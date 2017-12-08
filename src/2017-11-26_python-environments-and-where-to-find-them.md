@@ -205,10 +205,12 @@ Note that if you use the graphical installer, it will update your `$HOME/.bash_p
 directory to your `PATH` (which you can of course later revert back if that's undesired). Installing with `brew cask`
 is another option and then the `PATH` variable is not updated.
 
+Refer to the [Installation guide](TODO: add link) and [Getting started](TODO: add link) for more information.
+
 ### Docker
 
 Docker doesn't really belong in the list of Python environment management tools but it comes in handy to enable
-reproducibility when it's not just Python packages play a role in the environment. An example could be a deep learning
+reproducibility when not only Python packages play a role in the environment. An example could be a deep learning
 setup where Keras uses Tensorflow which runs so much faster with GPU acceleration with CUDA. Keras and Tensorflow
 can be installed as Python packages but not CUDA.
 
