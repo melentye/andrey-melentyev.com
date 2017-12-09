@@ -64,13 +64,14 @@
         </ul></nav><!-- /#menu -->     
         <hr>   
         <footer id="contentinfo" class="body">
+            <address id="about" class="vcard body">
+                <small>&copy; Andrey Melentyev, 2017. This website's content is licensed under a 
+                  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                    Creative Commons Attribution 4.0 International License</a>.</small>
+            </address><!-- /#about -->
             {% if GITHUB_URL %}
             <small>Found an issue? Submit <a href="{{ GITHUB_URL }}">feedback or a pull request on GitHub.</a></small>
             {% endif %}
-            <address id="about" class="vcard body">
-                <small>&copy; 2017. Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                    which takes great advantage of <a href="http://python.org">Python</a>.</small>
-            </address><!-- /#about -->
         </footer><!-- /#contentinfo -->
 {% include 'analytics.html' %}
 </body>
