@@ -1,6 +1,6 @@
 Title: Python environments and where to find them
 Tags: python
-Modified: 2017-12-08 14:26
+Modified: 2017-12-09 23:16
 Summary: Taking care of Python environments can be hard and the variety of tools overwhelming. But it doesn't have to be!
 
 Books, tutorials and online courses often make suggestions on how to set up a Python environment. Some recommend using
@@ -29,6 +29,20 @@ to go into the details of how to install and operate each tool but rather to exp
 the PyPA-recommended tool to install packages from PyPI. It is shipped with modern versions of Python and installed by
 default when virtualenv is used.
 
+pip makes it easy to install packages and automatically resolves transitive dependencies:
+
+    $ pip install numpy
+    Collecting numpy
+    Using cached numpy-1.13.3-cp36-cp36m-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl
+    Installing collected packages: numpy
+    Successfully installed numpy-1.13.3
+
+It supports installing packages from Git repositories and from URLs pointing to
+[wheel packages](https://packaging.python.org/tutorials/installing-packages/#source-distributions-vs-wheels):
+
+    pip install git+git://github.com/riccardoscalco/Pykov@master
+    pip install https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.4.0-py2-none-any.whl
+
 `pip freeze` command exports the list of installed packages. The output of this command saved in a
 [requirements.txt file](https://pip.pypa.io/en/stable/user_guide/#requirements-files) can be stored in a version
 control system allowing multiple developers to keep their package versions in sync. Example:
@@ -41,6 +55,8 @@ control system allowing multiple developers to keep their package versions in sy
     seaborn==0.8.1
 
 pip is extremely popular and nearly all major Python libraries and frameworks are published to PyPI.
+
+Refer to the [official documentation](https://pip.pypa.io/en/stable/) for more information.
 
 ### virtualenv
 
@@ -79,7 +95,7 @@ To create an environment with a specific Python version (which has to be install
 Virtual environments can be stored anywhere, one approach is to store them in the `~/virtualenvs`, another
 is to put the environment in the same directory as the project that uses it.
 
-Refer to the [Getting started](TODO: add link) for more information.
+Refer to the [User Guide](https://virtualenv.pypa.io/en/stable/userguide/) for more information.
 
 ### pyenv
 
@@ -117,6 +133,8 @@ placing a `.python-version` file in a project directory:
     $ PYENV_VERSION=3.6.0 python --version
     Python 3.6.0
 
+Check out the [GitHub page](https://github.com/pyenv/pyenv) for installation and usage intructions.
+
 ### pyenv-virtualenv
 
 > [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) is a pyenv plugin that provides features to manage
@@ -127,6 +145,8 @@ versions. For a "vanilla" Python distribution, virtualenv will be used, for Mini
 pyenv-virtualenv delegates to Conda.
 
 Note that you don't need pyenv-virtualenv to use pyenv and virtualenv together, the plugin just makes it easier.
+
+Refer to the [GitHub page](https://github.com/pyenv/pyenv-virtualenv) for installation and usage help.
 
 ### Conda
 
@@ -183,13 +203,19 @@ Conda treats Python as any other package, so it's possible to create an environm
     $ python --version
     Python 2.7.14 :: Anaconda, Inc.
 
+Starting from Conda 4.4, `conda activate` and `conda deactivate` are recommended instead of using the `source` command.
+
 AWS [has recently announced a new version of the AWS Deep Learning AMI](https://aws.amazon.com/blogs/ai/new-aws-deep-learning-amis-for-machine-learning-practitioners)
 where each deep learning framework resides in its own Conda environment. Neat!
+
+Refer to the [User Guide](https://conda.io/docs/user-guide/index.html) for installation and usage help.
 
 ### Miniconda
 
 As we briefly mentioned, [Miniconda](https://conda.io/docs/glossary.html#miniconda) is a Python distribution with Conda
 and some useful packages. If you liked the movie "Inception", you might also want to install Miniconda using pyenv.
+
+Navigate to the [official page](https://conda.io/miniconda.html) to get started.
 
 ### Anaconda
 
@@ -205,7 +231,8 @@ Note that if you use the graphical installer, it will update your `$HOME/.bash_p
 directory to your `PATH` (which you can of course later revert back if that's undesired). Installing with `brew cask`
 is another option and then the `PATH` variable is not updated.
 
-Refer to the [Installation guide](TODO: add link) and [Getting started](TODO: add link) for more information.
+Download from the [official website](https://www.anaconda.com/download/) and refer to the
+[documentation](https://docs.anaconda.com/anaconda/) to find out more.
 
 ### Docker
 
