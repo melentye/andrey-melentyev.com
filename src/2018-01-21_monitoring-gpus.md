@@ -1,7 +1,6 @@
 Title: Like top, but for GPUs
 Tags: deep learning, gpu
 Modified: 2018-01-21 16:46
-Status: draft
 Summary: Monitoring GPU (Graphical Processing Unit) utilization for deep learning.
 
 Machine learning and deep learning workloads often involve heavy computation. Sometimes it'll be enough to run it
