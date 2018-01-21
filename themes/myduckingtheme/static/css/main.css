@@ -71,6 +71,10 @@ blockquote {
     font-style: italic;
 }
 
+figure {
+    text-align: center;
+}
+
 figcaption {
     font-style: italic;
 }
