@@ -1,5 +1,11 @@
 {% extends "index.html" %}
-{% block content_title %}
-<h2>Articles in the {{ category }} category</h2>
+
+{% block title %}{{ SITENAME }} - {{ category }}{% endblock %}
+{% block canonical_rel %}
+  <link rel="canonical" href="{{ SITEURL }}/{{ output_file }}">
+{% endblock %}
+{% block content %}
+  <h2>Articles in the {{ category }} category</h2>
+  {{ super() }}
 {% endblock %}
 

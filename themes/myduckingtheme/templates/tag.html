@@ -1,7 +1,9 @@
 {% extends "index.html" %}
 
 {% block title %}{{ SITENAME }} - {{ tag }}{% endblock %}
-
+{% block canonical_rel %}
+  <link rel="canonical" href="{{ SITEURL }}/{{ output_file }}">
+{% endblock %}
 {% block content %}
   <h2>Articles tagged with "{{ tag }}"</h2>
   {{ super() }}

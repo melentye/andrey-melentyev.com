@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block title %}{{ SITENAME }} - {{ article.title }}{% endblock %}
-{% block canonical_rel %}
-  <link rel="canonical" href="{{ SITEURL }}/{{ article.url }}">
-{% endblock %}
+
 {% block head %}
   {{ super() }}
   {% if article.description %}
