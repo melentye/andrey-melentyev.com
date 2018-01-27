@@ -39,6 +39,16 @@ ol#post-list {
     text-decoration: underline;
 }
 
+a.headerlink {
+    display: none;
+    padding-left: .5em;
+    text-decoration: none;
+}
+
+h2:hover a.headerlink, h3:hover a.headerlink, h4:hover a.headerlink {
+    display: inline;
+}
+
 .entry-content {
     line-height: 1.5;
 }

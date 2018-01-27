@@ -45,11 +45,13 @@ PLUGINS = [
 
 MARKUP = ('md', 'ipynb')
 
-# Python Markdown extensions configuration, see http://pythonhosted.org/Markdown/extensions/
+# Python Markdown extensions configuration, see https://python-markdown.github.io/extensions/
 MARKDOWN = {
     'extension_configs': {
         'markdown.extensions.codehilite': {},
-        'markdown.extensions.toc': {},
+        'markdown.extensions.toc': {
+            'permalink': True
+        },
         'markdown.extensions.tables':{},
     }
 }
