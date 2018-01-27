@@ -64,7 +64,7 @@ time.modified {
 /* GLOBALS */
 
 .home {
-    max-width: 800px;
+    max-width: 40em;
     margin: 0 auto;
     padding: .5em;
 }
