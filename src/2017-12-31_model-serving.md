@@ -48,7 +48,8 @@ Regulatory, fairness, privacy and security requirements go without saying and wi
 
 * Near real-time predictions
   * Server-side
-    * Tensorflow serving
+    * Tensorflow serving. Also [Kubernetes Tensorflow Model Server](https://github.com/google/kubeflow/tree/master/components/k8s-model-server)
+    * [MXNet Model Server](https://github.com/awslabs/mxnet-model-server)
     * Clipper
     * H2O REST API
     * Openscoring
