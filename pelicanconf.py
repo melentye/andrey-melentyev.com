@@ -49,6 +49,7 @@ MARKUP = ('md', 'ipynb')
 MARKDOWN = {
     'extension_configs': {
         'markdown.extensions.codehilite': {},
+        'markdown.extensions.fenced_code': {},
         'markdown.extensions.toc': {
             'permalink': True
         },
