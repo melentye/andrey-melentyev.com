@@ -1,6 +1,6 @@
 Title: Model interoperability
 Tags: machine learning, interoperability, keras, xgboost, sklearn, lightgbm, catboost, spark, theano, tensorflow, pytorth, dl4j, coreml, nnvm, onnx, pmml
-Modified: 2017-11-27 10:30
+Modified: 2018-03-24 11:55
 Summary: How the trained models can be persisted and reused across libraries and environments.
 
 The post will describe how the **trained models** can be persisted and reused across machine learning **libraries**
@@ -400,7 +400,7 @@ of adoption. Even without a good model interchange format, there's usually a way
 wrapping it in a custom web service or using a product like Tensorflow Serving or Clipper.
 
 Mobile devices can access such a model using the client-server type of communication. Alternatively, a model can be
-transpired into one of the languages supported by the mobile platform. CoreML supports some machine learning libraries
+transpiled into one of the languages supported by the mobile platform. CoreML supports some machine learning libraries
 and allows the trained models to be used for inference on mobile devices.
 
 The world of deep learning is changing fast, just over the last few months a number of new and promising projects
