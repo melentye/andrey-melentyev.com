@@ -1,6 +1,6 @@
 Title: Model interoperability
 Tags: machine learning, interoperability, keras, xgboost, sklearn, lightgbm, catboost, spark, theano, tensorflow, pytorth, dl4j, coreml, nnvm, onnx, pmml
-Modified: 2018-03-24 11:55
+Modified: 2018-04-07 17:31
 Summary: How the trained models can be persisted and reused across libraries and environments.
 
 The post will describe how the **trained models** can be persisted and reused across machine learning **libraries**
@@ -51,8 +51,9 @@ There's a [sklearn2pmml](https://github.com/jpmml/sklearn2pmml) library by Opens
 scikit-learn models to [PMML]({filename}/2017-10-14_model-interoperability.md#predictive-model-markup-language-pmml).
 It is implemented as a Python wrapper around
 [a Java library](https://github.com/jpmml/jpmml-sklearn) and it is somewhat unclear which types of sklearn models are supported.
-It is also worth noting that Openscoring.io software is distributed under a viral
-[GNU Affero General Public License](https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)).
+It is also worth noting that Openscoring.io software is dual-licensed: a free copy is available under a viral
+[GNU Affero General Public License](https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)),
+but it is possible to purchase their products under the [3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause).
 
 ### XGBoost
 
