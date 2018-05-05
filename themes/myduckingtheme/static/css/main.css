@@ -30,14 +30,7 @@ ol#post-list {
 
 /* POST */
 
-.entry-title a:link, .entry-title a:visited {
-    text-decoration: none;
-    color: inherit;
-}
-
-.entry-title a:hover {
-    text-decoration: underline;
-}
+/* Anchors */
 
 a.headerlink {
     display: none;
@@ -47,6 +40,10 @@ a.headerlink {
 
 h2:hover a.headerlink, h3:hover a.headerlink, h4:hover a.headerlink {
     display: inline;
+}
+
+.entry-summary {
+    line-height: 1.5;
 }
 
 .entry-content {
