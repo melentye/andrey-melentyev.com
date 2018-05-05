@@ -1,5 +1,6 @@
 Title: Haskell tools
 Tags: haskell, tools
+Modified: 2018-05-05 22:42
 Summary: A very brief description of Haskell tools I've encountered so far.
 
 ## GHC, the Glasgow Haskell Compiler
@@ -57,8 +58,8 @@ Does it mean that Stack requires you to write and support three config files? No
 default configs when creating a project with `stack new`, and the Cabal files don't need to be supported
 because they are auto-generated. It turns out you don't need to work with Cabal directly if you use Stack.
 Using `stack new` is a great way to get a new Haskell project started because it creates a solid directory
-structure for you with an entry-point into the program, a library package and an [Hspec](TODO) unit test
-skeleton.
+structure for you with an entry-point into the program, a library package and an [Hspec](http://hspec.github.io/)
+unit test skeleton.
 
 For my Python colleagues, one way to think of Stack is that it's similar to Conda:
 
