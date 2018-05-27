@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Andrey Melentyev'
 SITENAME = 'Machine Learning Engineering'
-SITESUBTITLE = 'Blog by Andrey Melentyev, software engineer by day, machine learning learner by night.'
+SITESUBTITLE = 'Blog by Andrey Melentyev'
 SITEURL = ''
 GITHUB_URL = 'https://github.com/melentye/andrey-melentyev.com'
 
