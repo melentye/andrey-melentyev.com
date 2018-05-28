@@ -11,8 +11,9 @@ systems are bootable using the default Apple boot loader.
 *Why Linux?*
 *Why Ubuntu?*
 *Why LVM?*
-*Why keep macOS?*
-*Why not rEFIt?*
+*Why keep macOS?* - I am not sure how well will Linux support the hardware in my laptop. If  Also, installing macOS updates
+is the only way to keep firmware up-to-date.
+*Why not rEFIt?* - my idealistic viewpoint is 
 *Why not GRUB?*
 
 Pre-requisites:
@@ -74,7 +75,7 @@ In *Disk Utility* do the following:
 From the terminal, run
 
 ```shell
-sudo bless --device /dev/diskNsM
+sudo bless --device /dev/diskNsM --setBoot
 ```
 
 where `diskNsM` is the *Ubuntu Boot* partition from the `diskutil list` output.
@@ -141,7 +142,7 @@ keep *format* unchecked:
 
 * map `/dev/mapper/my-root-volume` to `/`.
 * map `/dev/mapper/my-home-volume` to `/home`.
-* map `/dev/sda4` to `/boot`.
+* do not map `/dev/sda4` just yet.
 
 ### Chroot
 
@@ -152,33 +153,61 @@ mount -t proc /proc proc/
 mount --rbind /sys sys/
 mount --rbind /dev dev/
 mount --rbind /run run/
-mkdir /mnt/boot
-mount /dev/sda4 /mnt/boot
+mkdir -p /mnt/boot/efi
+mount /dev/sda4 /mnt/boot/efi
+swapon /dev/mapper/my-encrypted-swap
 ```
 
 Then `chroot /mnt /bin/bash`
 
-### Check /etc/fstab
+### Setup /etc/crypttab
 
-Make sure everything is in order.
+When installing Ubuntu to an existing encrypted LVM, the installer will not create a `/etc/crypttab` file
+which is required for the system to boot properly. To create it manually:
+
+```shell
+echo "lvm UUID=$(blkid -o value -s UUID /dev/sda5) none luks" >> /etc/crypttab
+```
+
+### Setup /etc/fstab
+
+Check the content before writing, could be that `/` and `/home` mount points are already described
+after the installation.
+
+```shell
+echo "UUID=$(blkid -o value -s UUID /dev/mapper/my-encrypted-root) / auto defaults 0 0" >> /etc/fstab
+echo "UUID=$(blkid -o value -s UUID /dev/mapper/my-encrypted-home) /home auto defaults 0 0" >> /etc/fstab
+echo "UUID=$(blkid -o value -s UUID /dev/sda4) /boot/efi auto defaults 0 0" >> /etc/fstab
+```
+
+Make sure `/etc/fstab` has
+
+* `/`
+* `/home`
+* `/boot/efi`
+* swap
 
 ### Setup GRUB
 
-In the chroot environment, install GRUB with `apt-get install grub-efi-amd64`
-
-Then install the GRUB UEFI application into `/boot/EFI/arch/System/Library/CoreServices/boot.efi` and its modules into
-`/boot/grub/x86_64-efi`
+In the chroot environment, install GRUB with `apt-get install grub-efi-amd64`. Check `/etc/default/grub`,
+then run
 
 ```shell
-grub-install --target=x86_64-efi --efi-directory=/boot
+grub-install --target=x86_64-efi --boot-directory=/boot --efi-directory=/boot/efi
 ```
 
-Note: `touch /boot/efi/EFI/ubuntu/mach_kernel` if the last command doesn't work.
-
-Create a GRUB configuration file
+This will install the GRUB UEFI application into `/boot/efi/EFI/ubuntu/System/Library/CoreServices/boot.efi`
+and its modules into `/boot/grub/x86_64-efi`. Note: `touch /boot/efi/EFI/ubuntu/mach_kernel` if the last
+command doesn't work. Then create a GRUB configuration file:
 
 ```shell
 grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+If the output of `lsinitramfs /boot/initrd* | grep cryptsetup` is empty, then run
+
+```shell
+update-initramfs -u -k all
 ```
 
 #### Add Ubuntu to the macOS boot loader
@@ -186,17 +215,11 @@ grub-mkconfig -o /boot/grub/grub.cfg
 Change the directory structure to match macOS expectations:
 
 ```shell
-mv /boot/efi/EFI/arch/System/ /boot/
-rm -r /boot/EFI/
+mkdir -p /boot/efi/System/Library/CoreServices
+ln /boot/efi/EFI/ubuntu/boot.efi /boot/efi/System/Library/CoreServices/boot.efi
 ```
 
-Create a dummy `mach_kernel` file:
-
-```shell
-echo "This file is required for booting" > /boot/mach_kernel
-```
-
-Create a file `/boot/System/Library/CoreServices/SystemVersion.plist` with the following content:
+Create a file `/boot/efi/System/Library/CoreServices/SystemVersion.plist` with the following content:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -210,6 +233,12 @@ Create a file `/boot/System/Library/CoreServices/SystemVersion.plist` with the f
     <string>Ubuntu</string>
 </dict>
 </plist>
+```
+
+Create a dummy `mach_kernel` file:
+
+```shell
+echo "This file is required for booting" > /boot/efi/mach_kernel
 ```
 
 TODO: May need to bless the boot.efi file again?
@@ -232,7 +261,7 @@ TODO: May need to bless the boot.efi file again?
 1. Put the logo in the location where macOS boot loader can find it
 
         :::shell
-        sudo cp /tmp/ubuntu-logo.icns /boot/.VolumeIcon.icns
+        sudo cp /tmp/ubuntu-logo.icns /boot/efi/.VolumeIcon.icns
 
 1. Cleanup
 
@@ -240,4 +269,7 @@ TODO: May need to bless the boot.efi file again?
         rm /tmp/ubuntu-logo.icns
         rm /tmp/ubuntu-logo.png
         rm /tmp/ubuntu-clipart.zip
-   
+
+### Boot into Ubuntu
+
+Exit the chroot environment with `exit` and then reboot, hold the 
