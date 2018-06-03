@@ -91,23 +91,24 @@ to have the boot menu opened. Select *EFI Boot*, then in the Ubuntu boot screen 
 
 1. Launch *Terminal*.
 1. Start cgdisk with `sudo cgdisk /dev/sda`
-1. Drop the last partition (MS-DOS partition created from macOS).
-1. Create an LVM partition (type 8e00) on its place.
+1. Change the type of the last partition (MS-DOS partition created from macOS) to be an LVM partition (type 8e00).
+1. Write the changes.
 
-**Achtung**: `sda5` in the guide below is assuming macOS had three partitions and you've created one for Ubuntu Boot:
+**Achtung**: `sda4` in the guide below is assuming macOS had three partitions and you've created one for Ubuntu Boot:
 
 * sda1: macOS EFI boot partition
-* sda2: macOS partition
-* sda3: macOS recovery partition
-* sda4: Ubuntu boot partition
-* sda5: Ubuntu LVM partition
+* sda2: macOS APFS partition
+* sda3: Ubuntu boot partition
+* sda4: Ubuntu LVM partition
+
+If you see additional partitions, change the commands using `sda4` accordingly.
 
 ### Enable disk encryption
 
 We will use so-called LVM on LUKS approach where a single LVM partition is LUKS-encrypted together with its volumes.
 
-1. Initialise an encrypted parition: `cryptsetup luksFormat /dev/sda5`
-1. Open the encrypted partition and map it as *lvm* `cryptsetup luksOpen /dev/sda5 lvm`
+1. Initialise an encrypted parition: `cryptsetup luksFormat /dev/sda4`
+1. Open the encrypted partition and map it as *lvm* `cryptsetup luksOpen /dev/sda4 lvm`
 
 As the result, the partition is mapped as `/dev/mapper/lvm`.
 
@@ -119,43 +120,48 @@ pvcreate /dev/mapper/lvm
 # Create an LVM volume group called "my-encrypted"
 vgcreate my-encrypted /dev/mapper/lvm
 # Create an LVM volume for swap, size of the computer RAM
-lvcreate -L 4G my-encrypted -n swap
+lvcreate -L 6G my-encrypted -n swap
 # Create an LVM volume for the root filesystem
 lvcreate -L 20G my-encrypted -n root
 # Create an LVM volume for /home
 lvcreate -l +100%FREE my-encrypted -n home
-# Create file systems
-mkfs.ext4 /dev/mapper/my-encrypted-root
-mkfs.ext4 -m 1 /dev/mapper/my-encrypted-home
-mkswap /dev/mapper/my-encrypted-swap
+# Create file systems (notice an additional dash appeared for some reason)
+mkfs.ext4 /dev/mapper/my--encrypted-root
+mkfs.ext4 -m 1 /dev/mapper/my--encrypted-home
+mkswap /dev/mapper/my--encrypted-swap
 # Label the volumes
-e2label /dev/mapper/my-encrypted-root "Root"
-e2label /dev/mapper/my-encrypted-home "Home"
+e2label /dev/mapper/my--encrypted-root "Root"
+e2label /dev/mapper/my--encrypted-home "Home"
 ```
 
 ### Install Ubuntu
 
 Launch the installer by calling `ubiquity --no-bootloader` - note the command-line argument.
 
-Proceed until the disk partitioning step, choose "Something else" there and use the following mapping,
+Chose *Install third-party software for graphics and Wi-Fi hardware, Flash, MP3 and other media.* when asked.
+
+Proceed until the disk partitioning step, choose *Something else* there and use the following mapping,
 keep *format* unchecked:
 
 * map `/dev/mapper/my-root-volume` to `/`.
 * map `/dev/mapper/my-home-volume` to `/home`.
-* do not map `/dev/sda4` just yet.
+* do not map `/dev/sda3` just yet.
+
+Select *continue testing* when the installer finishes.
 
 ### Chroot
 
 ```shell
-mount /dev/mapper/my-root-volume /mnt
+mount /dev/mapper/my--encrypted-root /mnt
+mount /dev/mapper/my--encrypted-home /mnt/home
 cd /mnt
 mount -t proc /proc proc/
 mount --rbind /sys sys/
 mount --rbind /dev dev/
 mount --rbind /run run/
-mkdir -p /mnt/boot/efi
-mount /dev/sda4 /mnt/boot/efi
-swapon /dev/mapper/my-encrypted-swap
+mkdir -p /mnt/media/cdrom
+mount --bind /media/cdrom /mnt/media/cdrom
+mount /dev/sda3 boot/efi
 ```
 
 Then `chroot /mnt /bin/bash`
@@ -166,31 +172,42 @@ When installing Ubuntu to an existing encrypted LVM, the installer will not crea
 which is required for the system to boot properly. To create it manually:
 
 ```shell
-echo "lvm UUID=$(blkid -o value -s UUID /dev/sda5) none luks" >> /etc/crypttab
+echo "lvm UUID=$(blkid -o value -s UUID /dev/sda4) none luks" >> /etc/crypttab
 ```
 
 ### Setup /etc/fstab
 
 Check the content before writing, could be that `/` and `/home` mount points are already described
-after the installation.
+after the installation. In my case there were already mount points for root, home, swap and an incorrect one for /boot/efi.
+Show the correct example.
 
 ```shell
 echo "UUID=$(blkid -o value -s UUID /dev/mapper/my-encrypted-root) / auto defaults 0 0" >> /etc/fstab
 echo "UUID=$(blkid -o value -s UUID /dev/mapper/my-encrypted-home) /home auto defaults 0 0" >> /etc/fstab
-echo "UUID=$(blkid -o value -s UUID /dev/sda4) /boot/efi auto defaults 0 0" >> /etc/fstab
+echo "UUID=$(blkid -o value -s UUID /dev/sda4) /boot/efi auto force,rw 0 0" >> /etc/fstab
 ```
 
-Make sure `/etc/fstab` has
+### Add APT repository
 
-* `/`
-* `/home`
-* `/boot/efi`
-* swap
+In case of the offline installation (for example when the Wi-Fi adaptor drivers don't work by default), Live CD / USB stick
+can be used as an APT repository:
+
+```shell
+apt-cdrom --no-act -m --cdrom /media/cdrom add
+```
+
+should report something positive, then run
+
+```shell
+apt-cdrom -m --cdrom /media/cdrom add
+```
+
+to actually add the repository.
 
 ### Setup GRUB
 
-In the chroot environment, install GRUB with `apt-get install grub-efi-amd64`. Check `/etc/default/grub`,
-then run
+In the chroot environment, install GRUB with `apt-get install grub-efi-amd64`. Open `/etc/default/grub`,
+add `GRUB_DISABLE_OS_PROBER=true` and `GRUB_ENABLE_CRYPTODISK=y`, then run
 
 ```shell
 grub-install --target=x86_64-efi --boot-directory=/boot --efi-directory=/boot/efi
@@ -198,7 +215,7 @@ grub-install --target=x86_64-efi --boot-directory=/boot --efi-directory=/boot/ef
 
 This will install the GRUB UEFI application into `/boot/efi/EFI/ubuntu/System/Library/CoreServices/boot.efi`
 and its modules into `/boot/grub/x86_64-efi`. Note: `touch /boot/efi/EFI/ubuntu/mach_kernel` if the last
-command doesn't work. Then create a GRUB configuration file:
+command doesn't work and retry the `grub-install`. Then create a GRUB configuration file:
 
 ```shell
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -216,7 +233,7 @@ Change the directory structure to match macOS expectations:
 
 ```shell
 mkdir -p /boot/efi/System/Library/CoreServices
-ln /boot/efi/EFI/ubuntu/boot.efi /boot/efi/System/Library/CoreServices/boot.efi
+ln /boot/efi/EFI/ubuntu/System/Library/CoreServices/boot.efi /boot/efi/System/Library/CoreServices/boot.efi
 ```
 
 Create a file `/boot/efi/System/Library/CoreServices/SystemVersion.plist` with the following content:
