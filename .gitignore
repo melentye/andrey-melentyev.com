@@ -17,3 +17,6 @@ out/
 # IntelliJ
 .idea/
 *.iml
+
+# virtualenv
+.venv
