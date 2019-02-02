@@ -13,8 +13,11 @@ from pelicanconf import *
 SITEURL = 'https://www.andrey-melentyev.com'
 RELATIVE_URLS = False
 
+FEED_DOMAIN = SITEURL
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
+FEED_ALL_RSS = 'feeds/all.rss.xml'
+CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
 
 # Additional menu items
 MENUITEMS = (('Home', SITEURL),)
@@ -23,5 +26,4 @@ DELETE_OUTPUT_DIRECTORY = True
 
 # Following items are often useful when publishing
 
-#DISQUS_SITENAME = ""
 GOOGLE_ANALYTICS = 'UA-105911009-1'

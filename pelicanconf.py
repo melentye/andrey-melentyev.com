@@ -3,8 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Andrey Melentyev'
-SITENAME = 'Machine Learning Engineering'
-SITESUBTITLE = 'Blog by Andrey Melentyev'
+SITENAME = 'Andrey\'s rants and notes'
 SITEURL = ''
 GITHUB_URL = 'https://github.com/melentye/andrey-melentyev.com'
 
@@ -31,7 +30,7 @@ DEFAULT_PAGINATION = False
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
 
-FILENAME_METADATA = '(?P<date>\d{4}-\d{2}-\d{2})_(?P<slug>.*)'
+FILENAME_METADATA = r'(?P<date>\d{4}-\d{2}-\d{2})_(?P<slug>.*)'
 
 # Appearance
 THEME = 'themes/myduckingtheme'
@@ -69,7 +68,6 @@ STATIC_PATHS = [
 EXTRA_PATH_METADATA = {
     'static/yandex_44baf762e45a6938.html': {'path': 'yandex_44baf762e45a6938.html'},
     'static/googlea786935fedb7c74d.html': {'path': 'googlea786935fedb7c74d.html'},
-    'static/keybase.txt': {'path': 'keybase.txt'},
     'static/robots.txt': {'path': 'robots.txt'},
     'static/resume.html': {'path': 'resume.html'},
     'static/resume.css': {'path': 'resume.css'},
@@ -80,12 +78,12 @@ SITEMAP = {
     'format': 'xml',
     'priorities': {
         'articles': 0.55,
-        'indexes': 0.5,
+        'indexes': 0.3,
         'pages': 0.45
     },
     'changefreqs': {
         'articles': 'weekly',
-        'indexes': 'daily',
+        'indexes': 'weekly',
         'pages': 'weekly'
     },
     'exclude': ['tag/', 'category/']

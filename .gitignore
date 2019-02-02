@@ -18,5 +18,8 @@ out/
 .idea/
 *.iml
 
+# VS Code
+.vscode/
+
 # virtualenv
 .venv

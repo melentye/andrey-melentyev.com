@@ -1,8 +1,8 @@
-# Machine Learning Engineering
+# Rants and notes
 
 [![Build Status](https://travis-ci.org/melentye/andrey-melentyev.com.svg?branch=master)](https://travis-ci.org/melentye/andrey-melentyev.com)
 
-A blog about software engineering in the area of machine learning, written by an engineer.
+A blog about software engineering and other stuff.
 
 Published as [www.andrey-melentyev.com](https://www.andrey-melentyev.com)
 
