@@ -39,11 +39,10 @@ THEME = 'themes/myduckingtheme'
 # Plugins
 PLUGIN_PATHS = ['plugins']
 PLUGINS = [
-    'ipynb.markup',
     'sitemap'
 ]
 
-MARKUP = ('md', 'ipynb')
+MARKUP = ('md')
 
 # Python Markdown extensions configuration, see https://python-markdown.github.io/extensions/
 MARKDOWN = {
@@ -56,12 +55,6 @@ MARKDOWN = {
         'markdown.extensions.tables':{},
     }
 }
-
-# IPython plugin settings
-IPYNB_USE_META_SUMMARY = False
-IPYNB_IGNORE_CSS = True
-
-IGNORE_FILES += ['.ipynb_checkpoints']
 
 # Make the processor ignore files in static/ dir
 ARTICLE_EXCLUDES = ['static']
