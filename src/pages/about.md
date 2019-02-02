@@ -9,7 +9,7 @@ an occasional rant about any other area I know nothing about.
 
 I work as a software engineer in an R&D team at a bank in Stockholm, Sweden. Our team is busy making sense of the web in
 order to automate some of its boring parts. I'm also the domain architect for the AI & Automation domain to which the team
-belongs. Should you be interested more in my work life, check out my [resume]({filename}/static/resume.html).
+belongs. Should you be interested more in my work life, check out my [resume]({static}/static/resume.html).
 
 Apart from work, I spend a lot of time with my better half [Elvira](https://elvira-breaking-things.tumblr.com/), exploring
 parts of Stockholm and its surroundings or visiting neighbouring EU countries.

@@ -9,9 +9,7 @@ aws_region := us-east-1
 SHELL   := /bin/bash
 .SHELLFLAGS := -ec
 
-MKDIR_P ?= mkdir -p
 RMDIR   ?= rm -rf
-PYTHON  ?= python
 PELICAN ?= pelican
 AWS_CLI ?= aws
 
@@ -21,27 +19,16 @@ ifeq ($(DEBUG), 1)
 	pelicanopts += -D
 endif
 
-.PHONY : all site html serve devserver stopserver publish cf_create cf_update cf_status clean
+.PHONY : html clean devserver publish cf_create cf_update cf_status
 
-all : site
-
-site : html
-
-$(outputdir) :
-	$(MKDIR_P) $@
-
-html : $(pages) $(outputdir)
+html :
 	$(PELICAN) $(srcdir) -o $(outputdir) -s pelicanconf.py $(pelicanopts)
 
-serve :
-	cd $(outputdir) && $(PYTHON) -m pelican.server
+clean :
+	$(RMDIR) $(outputdir)
 
 devserver :
-	$(projectdir)/develop_server.sh restart
-
-stopserver :
-	$(projectdir)/develop_server.sh stop
-	@echo 'Stopped Pelican and SimpleHTTPServer processes running in background.'
+	$(PELICAN) -lr $(srcdir) -o $(outputdir) -s pelicanconf.py $(pelicanopts)
 
 publish :
 	$(PELICAN) $(srcdir) -o $(outputdir) -s publishconf.py $(pelicanopts) ;\
@@ -57,6 +44,3 @@ cf_update :
 
 cf_status :
 	$(AWS_CLI) cloudformation describe-stack-events  --region $(aws_region) --stack-name $(cf_stack) --output table --query 'StackEvents[*].[LogicalResourceId,ResourceStatus,Timestamp]' --max-items 5
-
-clean :
-	$(RMDIR) $(outputdir)
