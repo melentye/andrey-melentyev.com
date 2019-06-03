@@ -1,5 +1,4 @@
 awscli
-# Bump to >3.0.1 once https://github.com/Python-Markdown/markdown/issues/725 is released
-Markdown~=2.6.11
+Markdown~=3.1.1
 pelican~=4.0.1
-Pygments~=2.3.1
+Pygments~=2.4.2
