@@ -25,6 +25,5 @@ MENUITEMS = (('Home', SITEURL),)
 
 DELETE_OUTPUT_DIRECTORY = True
 
-# Following items are often useful when publishing
-
-GOOGLE_ANALYTICS = 'UA-105911009-1'
+# Surely Google will survive without having data on my blog's visitors
+#GOOGLE_ANALYTICS = 'UA-105911009-1'
