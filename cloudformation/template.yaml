@@ -40,6 +40,7 @@ Resources:
         ViewerCertificate:
           AcmCertificateArn: !Ref TLSCertificate
           SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2018
         DefaultCacheBehavior:
           MaxTTL: 3600
           ForwardedValues:
