@@ -10,6 +10,7 @@ languages, when it comes to building a program consisting of more than a single 
 invoking the compiler directly becomes unfeasible. In any case, it's good to know that `ghc` is
 the compiler executable name and `ghci` is the interactive read-eval-print loop (REPL).
 
+    :::shell-session
     $ ghci
     GHCi, version 8.2.2: http://www.haskell.org/ghc/  :? for help
     Prelude> print "Hello, World!"

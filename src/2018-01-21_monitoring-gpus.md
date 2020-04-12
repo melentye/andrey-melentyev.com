@@ -26,6 +26,7 @@ Let's dig into the output: it seems to have a header with nvidia-smi version and
 things can be found in other places but it's nice to have them available so quickly without going through the
 installed OS packages or Linux kernel module listings.
 
+    :::text
     |-------------------------------+----------------------+----------------------+
     | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
     | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
@@ -60,6 +61,7 @@ GPU is underused which can be the case if the code spends a lot of time in other
 from disk for example). **Compute M.** indicates the shared access mode where the default setting allows multiple
 clients to access the CPU concurrently.
 
+    :::text
     +-----------------------------------------------------------------------------+
     | Processes:                                                       GPU Memory |
     |  GPU       PID   Type   Process name                             Usage      |
@@ -91,16 +93,16 @@ Running nvidia-smi continuously can be done in two ways:
 
 * Built-in `--loop` flag:
 
-        :::shell
-        nvidia-smi --loop=1
+        :::shell-session
+        $ nvidia-smi --loop=1
 
     works nicely to report the metrics every second, but appends each update to the stdout instead
     of rewriting the previous values.
 
 * `watch` command available on most Unix-like OS is another option:
 
-        :::shell
-        watch --interval 1 nvidia-smi
+        :::shell-session
+        $ watch --interval 1 nvidia-smi
 
     invokes nvidia-smi every second and re-draws the output on the screen.
 
@@ -111,7 +113,7 @@ In both cases, use Ctrl+C to quit the refresh loop.
 nvidia-smi can produce files XML and CSV output. The following command produces a CSV line per second with a short
 summary of the processes using the GPU:
 
-    ::::shell
+    ::::shell-session
     $ nvidia-smi --format=csv,noheader \
         --query-compute-apps=timestamp,gpu_name,pid,used_memory \
         --loop=1

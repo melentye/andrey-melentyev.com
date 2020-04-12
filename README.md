@@ -17,3 +17,6 @@ Published as [www.andrey-melentyev.com](https://www.andrey-melentyev.com)
 * `make devserver` to start the server which continuously regenerates and serves pages.
 * `make publish` to generate the public version and publish it to S3.
 * `make cf_create` and `make cf_update` to setup infrastructure in AWS.
+
+`requirements.unpinned.txt` is a human-readable list of actual Python packages used, while
+`requirements.txt` is a result of executing `pip freeze`, stored for inspectability and reproducibility (think lock file).

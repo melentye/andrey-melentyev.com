@@ -31,6 +31,7 @@ default when virtualenv is used.
 
 pip makes it easy to install packages and automatically resolves transitive dependencies:
 
+    :::shell-session
     $ pip install numpy
     Collecting numpy
     Using cached numpy-1.13.3-cp36-cp36m-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl
@@ -40,13 +41,15 @@ pip makes it easy to install packages and automatically resolves transitive depe
 It supports installing packages from Git repositories and from URLs pointing to
 [wheel packages](https://packaging.python.org/tutorials/installing-packages/#source-distributions-vs-wheels):
 
-    pip install git+git://github.com/riccardoscalco/Pykov@master
-    pip install https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.4.0-py2-none-any.whl
+    :::shell-session
+    $ pip install git+git://github.com/riccardoscalco/Pykov@master
+    $ pip install https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.4.0-py2-none-any.whl
 
 `pip freeze` command exports the list of installed packages. The output of this command saved in a
 [requirements.txt file](https://pip.pypa.io/en/stable/user_guide/#requirements-files) can be stored in a version
 control system allowing multiple developers to keep their package versions in sync. Example:
 
+    :::shell-session
     $ pip freeze
     matplotlib==2.1.0
     numpy==1.13.3
@@ -72,6 +75,7 @@ environment is created:
 
 Sample usage:
 
+    :::shell-session
     $ virtualenv ~/virtualenvs/pelican
     Using base prefix '/Users/andrey.melentyev/.pyenv/versions/3.6.3'
     New python executable in /Users/andrey.melentyev/virtualenvs/pelican/bin/python3.6
@@ -90,7 +94,8 @@ virtualenv, we will get that for free with any of the other tools below.
 
 To create an environment with a specific Python version (which has to be installed first), use the `-p` argument:
 
-    virtualenv -p /usr/local/bin/python3 ~/virtualenvs/yourenv
+    :::shell-session
+    $ virtualenv -p /usr/local/bin/python3 ~/virtualenvs/yourenv
 
 Virtual environments can be stored anywhere, one approach is to store them in the `~/virtualenvs`, another
 is to put the environment in the same directory as the project that uses it.
@@ -109,6 +114,7 @@ usual. Same goes for [Anaconda]({filename}/2017-11-26_python-environments-and-wh
 
 Usage:
 
+    :::shell-session
     $ pyenv install 3.6.0
     Downloading Python-3.6.0.tar.xz...
     -> https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
@@ -118,6 +124,7 @@ Usage:
 If you get "ERROR: The Python ssl extension was not compiled. Missing the OpenSSL lib?" under macOS, see
 [Github issue](https://github.com/pyenv/pyenv/issues/950#issuecomment-333114076).
 
+    :::shell-session
     $ pyenv versions
     system
     2.7.10
@@ -130,6 +137,7 @@ If you get "ERROR: The Python ssl extension was not compiled. Missing the OpenSS
 pyenv enables switching between Python versions by using `PYENV_VERSION` environment variable or other means such as
 placing a `.python-version` file in a project directory:
 
+    :::shell-session
     $ PYENV_VERSION=3.6.0 python --version
     Python 3.6.0
 
@@ -173,6 +181,7 @@ by pip from PyPI.
 
 Conda treats Python as any other package, so it's possible to create an environment with an arbitrary Python version:
 
+    :::shell-session
     $ conda create --name my-friends-env --yes --quiet python=2.7.14
 
     Package plan for installation in environment /Users/andrey.melentyev/anaconda3/envs/my-friends-env:
@@ -298,11 +307,13 @@ From the table it becomes clear that there is more than one way to cover all thr
 
 To find out which version of Python is currently active, use `python --version`:
 
+    :::shell-session
     $ python --version
     Python 3.6.3
 
 It's a start, but where does this version come from? [which](https://tldr.ostera.io/which) command comes to the rescue:
 
+    :::shell-session
     $ which --all python
     /Users/andrey.melentyev/.pyenv/shims/python
     /usr/bin/python
@@ -311,6 +322,7 @@ the first line of the output is the full path to the executable that will be run
 line. The subsequent lines are some other `python` executables that are shadowed by the first one. In this case, we
 notice that pyenv-managed Python is at the top. We can query pyenv to find out more:
 
+    :::shell-session
     $ pyenv version
     my-fresh-vanilla-python (set by PYENV_VERSION environment variable)
 
@@ -324,16 +336,19 @@ notice that pyenv-managed Python is at the top. We can query pyenv to find out m
 
 Check out Python version
 
+    :::shell-session
     $ python --version
     Python 3.6.3 :: Anaconda, Inc.
 
 Aha, it's an Anaconda. Where is it from?
 
+    :::shell-session
     $ which python
     /Users/andrey.melentyev/anaconda3/bin/python
 
 What other Conda environments do I have?
 
+    :::shell-session
     $ conda env list
     # conda environments:
     #
@@ -342,6 +357,7 @@ What other Conda environments do I have?
 
 ### Example 3 - system Python
 
+    :::shell-session
     $ python --version
     Python 2.7.10
 
