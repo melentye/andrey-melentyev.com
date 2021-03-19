@@ -4,7 +4,7 @@ botocore==1.15.39
 colorama==0.4.3
 docutils==0.15.2
 feedgenerator==1.9.1
-Jinja2==2.11.1
+Jinja2==2.11.3
 jmespath==0.9.5
 Markdown==3.2.1
 MarkupSafe==1.1.1
