@@ -1,4 +1,4 @@
 awscli
 Markdown~=3.2.1
 pelican~=4.2.0
-Pygments~=2.6.1
+Pygments~=2.7.4
